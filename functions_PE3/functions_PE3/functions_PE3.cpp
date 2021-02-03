@@ -2,10 +2,20 @@
 //
 
 #include <iostream>
+//add the header file to main 
+#include "functions.h";
+using namespace std;
 
 int main()
 {
-    std::cout << "Hello World!\n";
+    //step 1: call printName function
+    PrintName();
+    
+}
+
+//print name takes no parameters and prints name on new line
+void PrintName() {
+    cout << "Liam Andres" << endl;
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu

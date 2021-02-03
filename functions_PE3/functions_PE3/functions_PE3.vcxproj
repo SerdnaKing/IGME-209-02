@@ -141,6 +141,9 @@
   <ItemGroup>
     <ClCompile Include="functions_PE3.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="functions.h" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
