@@ -8,15 +8,68 @@ using namespace std;
 #include "hangman.h";
 int main()
 {
+    //integer counting guesses remaining
+    int guessesMade = 0;
+    char answer[7] = "zoinks";
     //the string that will be guessed by the user
-    char toBeGuessed[] = "";
+    char guess[] = "";
+    
     //the string that holds the correctly guessed letters
-    char guessed[7] = {}; //7 is overflow
+    //7 is overflow
+    char toBeGuessed[7] = ""; 
+
     //the string that holds all the incorrect guesses
-    char wrongGuesses[9] = {};
+    char wrongGuesses[9] = "";
 
     cout << "Let's play hangman!\nYour word has 6 letters in it.\n" << endl;
-   // showGallows(8);
+   showGallows(guessesMade);
+   
+   while (guessesMade != 8 && answer != toBeGuessed) {
+       cout << "Type a letter and hit enter: ";
+       cin >> guess;
+       if (strstr(answer, guess)) {
+           cout << "Good answer!" << endl;
+
+           if (guess[0] == 'z') {
+               toBeGuessed[0] = 'z';
+               showSolved(toBeGuessed, wrongGuesses);
+
+           }
+           if (guess[0] == 'o') {
+               toBeGuessed[1] = 'o';
+               showSolved(toBeGuessed, wrongGuesses);
+
+           }
+           if (guess[0] == 'i') {
+               toBeGuessed[2] = 'i';
+               showSolved(toBeGuessed, wrongGuesses);
+
+           }
+           if (guess[0] == 'n') {
+               toBeGuessed[3] = 'n';
+               showSolved(toBeGuessed, wrongGuesses);
+
+           }
+           if (guess[0] == 'k') {
+               toBeGuessed[4] = 'k';
+               showSolved(toBeGuessed, wrongGuesses);
+
+           }
+           if (guess[0] == 's') {
+               toBeGuessed[5] = 's';
+               showSolved(toBeGuessed, wrongGuesses);
+
+           }
+       
+       }
+       else {
+
+
+           guessesMade++;
+           showGallows(guessesMade);
+           wrongGuesses;
+       }
+   }
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
