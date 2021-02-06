@@ -86,7 +86,9 @@ int main()
 
        }
        else {
-         
+           if (strlen(guess) > 1) {
+               cout << "Input too long, enter one letter please" << endl;
+           }
            if (!strstr(wrongGuesses, guess) && strlen(guess) ==1) {
                guessesMade++;
                cout << "That's not right..." << endl;
@@ -99,12 +101,12 @@ int main()
                cout << toBeGuessed << endl;
                cout << wrongGuesses << endl;
            }
-           if (strstr(wrongGuesses, guess) && strlen(guess) == 1) {
+        //   if (strstr(wrongGuesses, guess) && strlen(guess) == 1) {
+           else {
                cout << "That letter was already guessed" << endl;
-           }
-           if (strlen(guess) > 1) {
-               cout << "Input too long, enter one letter please" << endl;
+
            }
        }
    }  
+   cout << "Press any key to continue..." << endl;
 }
