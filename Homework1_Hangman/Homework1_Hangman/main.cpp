@@ -25,6 +25,7 @@ int main()
    showGallows(guessesMade);
    
    while (guessesMade != 8 || toBeGuessed != answer) {
+      
        cout << "Type a letter and hit enter: ";
        cin >> guess;
     
@@ -84,12 +85,12 @@ int main()
              }
        }
    
-       else {
+       else{
 
 
            
            //showGallows(guessesMade);
-           if (!strstr(wrongGuesses, guess) && strlen(guess) ==1) {
+           if (!strstr(wrongGuesses, guess) && strlen(guess) ==1 && strlen(wrongGuesses) < 8) {
                strcat_s(wrongGuesses, guess);
                guessesMade++;
            }
@@ -103,7 +104,7 @@ int main()
                cout << "you already guessed that, try a different letter!"<<endl;
            }
           // strcat_s(wrongGuesses, guess);
-           cout << wrongGuesses << endl;
+          // cout << wrongGuesses << endl;
 
            //showSolved(toBeGuessed, wrongGuesses);
        }
