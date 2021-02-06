@@ -79,35 +79,35 @@ int main()
                //  showSolved(toBeGuessed, wrongGuesses);
 
            }
-           if (toBeGuessed == answer) {
+           if (strcmp(toBeGuessed,answer) == 0) {
                cout << "Congrats! You won!!!" << endl;
                break;
              }
        }
    
-       else{
+      // else{
 
 
            
            //showGallows(guessesMade);
-           if (!strstr(wrongGuesses, guess) && strlen(guess) ==1 && strlen(wrongGuesses) < 8) {
-               strcat_s(wrongGuesses, guess);
-               guessesMade++;
-           }
-           if (strlen(guess) > 1) {
-               cout << "\nThat's not one letter! try again!" << endl;
-               //  showGallows(guessesMade);
-               cout << "Word to solve: " << toBeGuessed << endl;
-               cout << wrongGuesses << endl;
-           }
-           else {
-               cout << "you already guessed that, try a different letter!"<<endl;
-           }
+           //if (!strstr(wrongGuesses, guess) && strlen(guess) ==1 && strlen(wrongGuesses) < 8) {
+           //    strcat_s(wrongGuesses, guess);
+           //    guessesMade++;
+           //}
+           //if (strlen(guess) > 1) {
+           //    cout << "\nThat's not one letter! try again!" << endl;
+           //    //  showGallows(guessesMade);
+           //    cout << "Word to solve: " << toBeGuessed << endl;
+           //    cout << wrongGuesses << endl;
+           //}
+           //else {
+           //    cout << "you already guessed that, try a different letter!"<<endl;
+           //}
           // strcat_s(wrongGuesses, guess);
           // cout << wrongGuesses << endl;
 
            //showSolved(toBeGuessed, wrongGuesses);
-       }
+     //  }
        
    }
    if (guessesMade == 8) {
