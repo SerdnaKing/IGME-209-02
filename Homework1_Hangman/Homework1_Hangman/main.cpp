@@ -29,7 +29,7 @@ int main()
        cout << "Type a letter and hit enter: ";
        cin >> guess;
     
-       if (strstr(answer, guess)) {
+       if (strstr(answer, guess) && strlen(guess)==1) {
            cout << "Good answer!" << endl;
 
            if (guess[0] == 'z') {
@@ -83,40 +83,28 @@ int main()
                cout << "Congrats! You won!!!" << endl;
                break;
              }
+
        }
-   
-      // else{
-
-
-           
-           //showGallows(guessesMade);
-           //if (!strstr(wrongGuesses, guess) && strlen(guess) ==1 && strlen(wrongGuesses) < 8) {
-           //    strcat_s(wrongGuesses, guess);
-           //    guessesMade++;
-           //}
-           //if (strlen(guess) > 1) {
-           //    cout << "\nThat's not one letter! try again!" << endl;
-           //    //  showGallows(guessesMade);
-           //    cout << "Word to solve: " << toBeGuessed << endl;
-           //    cout << wrongGuesses << endl;
-           //}
-           //else {
-           //    cout << "you already guessed that, try a different letter!"<<endl;
-           //}
-          // strcat_s(wrongGuesses, guess);
-          // cout << wrongGuesses << endl;
-
-           //showSolved(toBeGuessed, wrongGuesses);
-     //  }
-       
-   }
-   if (guessesMade == 8) {
-       cout << "GAME OVER! YOU LOST!!" << endl;
-       return 0;
-   }
-   else {
-       cout << "You won!" << endl;
-       return 0;
-   }
-  
+       else {
+         
+           if (!strstr(wrongGuesses, guess) && strlen(guess) ==1) {
+               guessesMade++;
+               cout << "That's not right..." << endl;
+               strcat_s(wrongGuesses, guess);
+               if (strlen(wrongGuesses) == 8) {
+                   cout << "Game over! You lost!" << endl;
+                   break;
+               }
+               showGallows(guessesMade);
+               cout << toBeGuessed << endl;
+               cout << wrongGuesses << endl;
+           }
+           if (strstr(wrongGuesses, guess) && strlen(guess) == 1) {
+               cout << "That letter was already guessed" << endl;
+           }
+           if (strlen(guess) > 1) {
+               cout << "Input too long, enter one letter please" << endl;
+           }
+       }
+   }  
 }
