@@ -3,9 +3,20 @@
 
 #include <iostream>
 
+
+using namespace std;
+#include "hangman.h";
 int main()
 {
-    std::cout << "Hello World!\n";
+    //the string that will be guessed by the user
+    char toBeGuessed[] = "";
+    //the string that holds the correctly guessed letters
+    char guessed[7] = {}; //7 is overflow
+    //the string that holds all the incorrect guesses
+    char wrongGuesses[9] = {};
+
+    cout << "Let's play hangman!\nYour word has 6 letters in it.\n" << endl;
+   // showGallows(8);
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
