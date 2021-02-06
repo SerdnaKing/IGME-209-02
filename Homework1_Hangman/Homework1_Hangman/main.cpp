@@ -78,7 +78,7 @@ int main()
                //  showSolved(toBeGuessed, wrongGuesses);
 
            }
-           if (toBeGuessed == "zoinks") {
+           if (toBeGuessed == answer) {
                cout << "Congrats! You won!!!" << endl;
                break;
              }
@@ -88,8 +88,8 @@ int main()
 
 
            
-           showGallows(guessesMade);
-           if (!strstr(wrongGuesses, guess)) {
+           //showGallows(guessesMade);
+           if (!strstr(wrongGuesses, guess) && strlen(guess) ==1) {
                strcat_s(wrongGuesses, guess);
                guessesMade++;
            }
