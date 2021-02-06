@@ -91,14 +91,3 @@ void showGallows(int guessLimit) {
 			     "|\n"<<endl;
 	}
 }
-
-//showSolved stores properly guessed letters in an array
-//if word is hello, array of word is blank to begin (only contains _____)
-//properly guessed letters are stored in w
-//incorrect are stored in guesses
-//THE CORRECT WORD IS: zoinks (letters to check: z o i n k s)
-//void showSolved(char word[7], char guesses[9]) {
-//
-//	cout << "Wrong guesses: " + guesses[900] << endl;
-//	cout << "Word to solve: " + word[700]<<endl; //6 letters plus 1 overflow
-//}

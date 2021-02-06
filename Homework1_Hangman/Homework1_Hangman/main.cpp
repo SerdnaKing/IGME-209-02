@@ -10,12 +10,12 @@ int main()
 {
     //integer counting guesses remaining
     int guessesMade = 0;
+
     char answer[7] = "zoinks";
     //the string that will be guessed by the user
     char guess[] = "";
     
     //the string that holds the correctly guessed letters
-    //7 is overflow
     char toBeGuessed[7] = "______"; 
 
     //the string that holds all the incorrect guesses
