@@ -13,7 +13,7 @@ int main()
 
     char answer[7] = "zoinks";
     //the string that will be guessed by the user
-    char guess[] = "";
+    char guess[1000] = "";
     
     //the string that holds the correctly guessed letters
     char toBeGuessed[7] = "______"; 
