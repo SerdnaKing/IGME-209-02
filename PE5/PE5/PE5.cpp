@@ -9,7 +9,15 @@ int main()
 {
     // create the window
     sf::RenderWindow window(sf::VideoMode(800, 600), "My window");
-
+    sf::RectangleShape myRect(sf::Vector2f(200,150));
+    myRect.setFillColor(sf::Color::Green);
+    myRect.setPosition(200, 350);
+    sf::CircleShape myCircle(50);
+    myCircle.setFillColor(sf::Color::Red);
+    myCircle.setPosition(60, 60);
+    sf::RectangleShape mySquare(sf::Vector2f(80, 80));
+    mySquare.setFillColor(sf::Color::Blue);
+    mySquare.setPosition(720, 520);
     // run the program as long as the window is open
     while (window.isOpen())
     {
@@ -25,9 +33,12 @@ int main()
         // clear the window with black color
         window.clear(sf::Color::Black);
 
+
         // draw everything here...
         // window.draw(...);
-
+        window.draw(myRect);
+        window.draw(myCircle);
+        window.draw(mySquare);
         // end the current frame
         window.display();
     }
