@@ -42,10 +42,10 @@ public:
 
 int main()
 {
-	Monster *boss = new Monster();
-	Player *pOne = new Player();
-	//MovableObject *boss = new Monster();
-	//MovableObject *pOne = new Player();
+	//Monster *boss = new Monster();
+	//Player *pOne = new Player();
+	MovableObject *boss = new Monster();
+	MovableObject *pOne = new Player();
 	Monster *fakeMonster = (Monster*)pOne;
 
 	// add code here
