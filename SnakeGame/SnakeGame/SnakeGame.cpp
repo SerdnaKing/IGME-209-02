@@ -2,12 +2,16 @@
 //
 
 #include <iostream>
-
-int main()
-{
-    std::cout << "Hello World!\n";
-}
-
+#include "snake.h";
+//#include "Snake.cpp";
+//#include <Box2D.h>
+//introduce the game to the user with instructions for the keys
+//creates physics world(b2world) and snake(physics body b2body)
+//creates a loop to keep playing until user hits ESC or gets 2 targets
+//int main() {
+//
+//
+//}
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
 // Debug program: F5 or Debug > Start Debugging menu
 
