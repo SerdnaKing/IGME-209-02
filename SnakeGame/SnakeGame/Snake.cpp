@@ -7,7 +7,7 @@ using namespace std;
 #include <conio.h>
 //define all global variables here:
 //things will go fast (possibly)
-float timeStep = 1.0f / 60.0f; //change to 1 / 1000 if moving too fast
+float timeStep = 1.0f / 1000.0f; //change to 1 / 1000 if moving too fast
 int velocityIterations = 6; //int32 threw error.
 int positionIterations = 2;
 
@@ -25,6 +25,8 @@ b2World world(gravity);
 //create the target box
 b2BodyDef target;
 
+
+b2Body* body;
 //create the snake (snake will only be changed in main)
 
 
@@ -41,7 +43,8 @@ void update() { //this method should be done
 //displays the position of the target and the player
 //
 void display() {
-	
+	/*b2Vec2 position = body->GetPosition();
+	printf("%4.2f , %4.2f\n", position.x, position.y);*/
 }
 
 
@@ -54,7 +57,8 @@ void applyForces() {
 		ch = _getch();
 		if (ch == 'w') {
 			//void b2Body::ApplyForceToCenter(
-			//void:: b2Body::ApplyForceToCenter()
+		//ApplyForceToCenter(b2Vec2(10,45), true);
+			body->ApplyForceToCenter(b2Vec2(0,1000), true);
 		}
 		if (ch == 'a') {
 
@@ -94,21 +98,42 @@ int main() {
 
 	
 	b2Body* groundBody = world.CreateBody(&groundBodyDef);
+	//create a ground polygon
 	b2PolygonShape groundBox;
 	groundBox.SetAsBox(50.0f, 10.0f);
+	//create the shape fixture
 	groundBody->CreateFixture(&groundBox, 0.0f);
 
 	//code for snake (does it need to be here or should there be 
 	b2BodyDef snake;
 	snake.type = b2_dynamicBody;
 	snake.position.Set(0.0f, 4.0f);
-	b2Body* body = world.CreateBody(&snake);
+	body = world.CreateBody(&snake);
+
+	//create and attatch a polygon shape
+	b2PolygonShape snakeBox;
+	snakeBox.SetAsBox(1.0f, 1.0f);
+
+	//create snake fixture definition
+	b2FixtureDef fixtureDef;
+	fixtureDef.shape = &snakeBox;
+	fixtureDef.density = 1.0f;
+
 
 	//code for the target
 	target.position.Set(0.0f, 4.0f);
-	b2Body* body = world.CreateBody(&target);
-	while (ch != 'ESC') {
+	b2Body* targetBod = world.CreateBody(&target);
 
+	//Welcome to the snake game! here are the controls: (...)
+	//Press any key to get started! (any key press starts numbers generation)
+	while (ch != 'q') {
+		update();
+		b2Vec2 position = body->GetPosition();
+		printf("%4.2f , %4.2f\n", position.x, position.y);
+		
+		if (_kbhit() != 0) {
+			applyForces();
+		}
 	}
 	//code for the target
 }
