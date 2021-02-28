@@ -1,6 +1,7 @@
 // SnakeGame.cpp : This file contains the 'main' function. Program execution begins and ends there.
 
 #include <Box2D.h>
+#include <iostream>;
 #include "snake.h";
 #include <conio.h>;
 extern float xVal; //xLoc in the range of -5 to 5
@@ -14,10 +15,10 @@ extern int ch;
 
 int main() {
 	printf("Welcome to Snake game! Press q at any time to quit the game.\nThe controls are WASD to control the direction of the snake.\nYou need to reach the targets location twice in order to win!\n"
-		"Press any key to start the game!");
+		"Press any key, then enter to start the game!");
 	
 
-	
+	std::cin >>ch; //dummy user input
 	//introduce the user and tell user about the key presses
 	//create the ground body and set the position
 	b2BodyDef groundBodyDef;
@@ -75,4 +76,4 @@ int main() {
 			}
 		} while (ch != 'q' || count != 2);
 	}
-}
+
