@@ -46,7 +46,6 @@ void display() {
 	printf("Snake: %4.2f , %4.2f Target: %4.2f, %4.2f\n", position.x, position.y ,xVal, yVal);
 }
 
-
 //reads the key presses and applies the forces to the player to move
 //use ApplyForceToCenter to add the force to the snake
 //will NOT be moving the player directly
@@ -66,8 +65,6 @@ void applyForces() {
 			body->ApplyForceToCenter(b2Vec2(100, 0), true);
 		}
 }
-
-
 //moves the target to a new location
 //location will be in the range of -5.0 -> 5.0 for both x and y
 //make the location random (within the bounds)
@@ -75,5 +72,4 @@ void moveTarget(float& xPos, float& yPos) {
 	//take the value and push it into a recognized variable
 	xVal = xPos;
 	yVal = yPos;
-	
 }

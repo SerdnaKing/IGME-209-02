@@ -9,6 +9,7 @@ extern float yVal; //yLoc in the range of -5 to 5
 int count; //checks to see if target was hit twice.
 bool collide = false;
 extern int ch;
+
 //introduce the game to the user with instructions for the keys
 //creates physics world(b2world) and snake(physics body b2body)
 //creates a loop to keep playing until user hits ESC or gets 2 targets
@@ -46,10 +47,6 @@ int main() {
 	b2FixtureDef snakeFixture;
 	snakeFixture.shape = &snakeBox;
 	snakeFixture.density = 1.0f;
-
-	//Welcome to the snake game! here are the controls: (...)
-	//Press any key to get started! (any key press starts numbers generation)
-	
 
 		do
 		{
