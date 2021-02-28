@@ -9,8 +9,11 @@ void moveTarget(float& xPos, float& yPos);
 extern b2World world;
 
 //create the target box
-extern b2BodyDef target;
+//extern b2BodyDef target;
 
 
 extern b2Body* body;
+//extern b2Body* body2;
+//extern float yLoc;
+//extern float xLoc;
 //int main();
