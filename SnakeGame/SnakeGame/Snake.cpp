@@ -2,22 +2,24 @@
 using namespace std;
 
 //add the header to the file
-#include "snake.h"
 #include <Box2D.h>
-#include <conio.h>
+#include "snake.h"
+
+#include <conio.h> //for kbhit and _getch
+#include <random> //for random target location generation
 //define all global variables here:
 //things will go fast (possibly)
 float timeStep = 1.0f / 1000.0f; //change to 1 / 1000 if moving too fast
 int velocityIterations = 6; //int32 threw error.
 int positionIterations = 2;
 
-int ch; //the character to be read by getch
+//int ch; //the character to be read by getch
 
 //x and y positions
 int xVal;
 int yVal;
 //define the gravity vector
-b2Vec2 gravity(0.0f, -10.0f); ///lower gravity if necessary
+b2Vec2 gravity(0.0f, -1.0f); ///lower gravity if necessary
 
 //create the world object
 b2World world(gravity);
@@ -43,8 +45,8 @@ void update() { //this method should be done
 //displays the position of the target and the player
 //
 void display() {
-	/*b2Vec2 position = body->GetPosition();
-	printf("%4.2f , %4.2f\n", position.x, position.y);*/
+	b2Vec2 position = body->GetPosition();
+	printf("Snake: %4.2f , %4.2f\n", position.x, position.y);
 }
 
 
@@ -54,20 +56,20 @@ void display() {
 void applyForces() {
 	//bind to wasd for direction
 	//if (kbhit != 0) {
-		ch = _getch();
+		int ch = _getch();
 		if (ch == 'w') {
 			//void b2Body::ApplyForceToCenter(
 		//ApplyForceToCenter(b2Vec2(10,45), true);
-			body->ApplyForceToCenter(b2Vec2(0,1000), true);
+			body->ApplyForceToCenter(b2Vec2(0,100), true);
 		}
 		if (ch == 'a') {
-
+			body->ApplyForceToCenter(b2Vec2(-100, 0), true);
 		}
 		if (ch == 's') {
-
+			body->ApplyForceToCenter(b2Vec2(0, -100), true);
 		}
 		if (ch == 'd') {
-
+			body->ApplyForceToCenter(b2Vec2(100, 0), true);
 		}
 	//}
 }
@@ -88,52 +90,52 @@ void moveTarget(float& xPos, float& yPos) {
 	
 }
 
-int main() {
-
-	ch = _getch();
-	//introduce the user and tell user about the key presses
-	//create the ground body and set the position
-	b2BodyDef groundBodyDef;
-	groundBodyDef.position.Set(0.0f, -10.0f);
-
-	
-	b2Body* groundBody = world.CreateBody(&groundBodyDef);
-	//create a ground polygon
-	b2PolygonShape groundBox;
-	groundBox.SetAsBox(50.0f, 10.0f);
-	//create the shape fixture
-	groundBody->CreateFixture(&groundBox, 0.0f);
-
-	//code for snake (does it need to be here or should there be 
-	b2BodyDef snake;
-	snake.type = b2_dynamicBody;
-	snake.position.Set(0.0f, 4.0f);
-	body = world.CreateBody(&snake);
-
-	//create and attatch a polygon shape
-	b2PolygonShape snakeBox;
-	snakeBox.SetAsBox(1.0f, 1.0f);
-
-	//create snake fixture definition
-	b2FixtureDef fixtureDef;
-	fixtureDef.shape = &snakeBox;
-	fixtureDef.density = 1.0f;
-
-
-	//code for the target
-	target.position.Set(0.0f, 4.0f);
-	b2Body* targetBod = world.CreateBody(&target);
-
-	//Welcome to the snake game! here are the controls: (...)
-	//Press any key to get started! (any key press starts numbers generation)
-	while (ch != 'q') {
-		update();
-		b2Vec2 position = body->GetPosition();
-		printf("%4.2f , %4.2f\n", position.x, position.y);
-		
-		if (_kbhit() != 0) {
-			applyForces();
-		}
-	}
-	//code for the target
-}
+//int main() {
+//
+//	ch = _getch();
+//	//introduce the user and tell user about the key presses
+//	//create the ground body and set the position
+//	b2BodyDef groundBodyDef;
+//	groundBodyDef.position.Set(0.0f, -10.0f);
+//
+//	
+//	b2Body* groundBody = world.CreateBody(&groundBodyDef);
+//	//create a ground polygon
+//	b2PolygonShape groundBox;
+//	groundBox.SetAsBox(50.0f, 10.0f);
+//	//create the shape fixture
+//	groundBody->CreateFixture(&groundBox, 0.0f);
+//
+//	//code for snake (does it need to be here or should there be 
+//	b2BodyDef snake;
+//	snake.type = b2_dynamicBody;
+//	snake.position.Set(0.0f, 4.0f);
+//	body = world.CreateBody(&snake);
+//
+//	//create and attatch a polygon shape
+//	b2PolygonShape snakeBox;
+//	snakeBox.SetAsBox(1.0f, 1.0f);
+//
+//	//create snake fixture definition
+//	b2FixtureDef fixtureDef;
+//	fixtureDef.shape = &snakeBox;
+//	fixtureDef.density = 1.0f;
+//
+//
+//	//code for the target
+//	target.position.Set(0.0f, 4.0f);
+//	b2Body* targetBod = world.CreateBody(&target);
+//
+//	//Welcome to the snake game! here are the controls: (...)
+//	//Press any key to get started! (any key press starts numbers generation)
+//	while (ch != 'q') {
+//		update();
+//		b2Vec2 position = body->GetPosition();
+//		printf("%4.2f , %4.2f\n", position.x, position.y);
+//		
+//		if (_kbhit() != 0) {
+//			applyForces();
+//		}
+//	}
+//	//code for the target
+//}
