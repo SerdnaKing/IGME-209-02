@@ -7,13 +7,17 @@ extern float xVal; //xLoc in the range of -5 to 5
 extern float yVal; //yLoc in the range of -5 to 5
 int count; //checks to see if target was hit twice.
 bool collide = false;
+extern int ch;
 //introduce the game to the user with instructions for the keys
 //creates physics world(b2world) and snake(physics body b2body)
 //creates a loop to keep playing until user hits ESC or gets 2 targets
 
 int main() {
+	printf("Welcome to Snake game! Press q at any time to quit the game.\nThe controls are WASD to control the direction of the snake.\nYou need to reach the targets location twice in order to win!\n"
+		"Press any key to start the game!");
 	
-	int ch = _getch();
+
+	
 	//introduce the user and tell user about the key presses
 	//create the ground body and set the position
 	b2BodyDef groundBodyDef;
@@ -46,22 +50,19 @@ int main() {
 	//Press any key to get started! (any key press starts numbers generation)
 	
 
-
-		while (count != 2) {
-			//moveTarget(xLoc, yLoc);
+		do
+		{
 			if (count >= 2) {
 				break; //this will break the loop effectively
 			}
+			
 			update();
 			display();
-			//xLoc = 6.0f;
-			//yLoc = rand() - 5 + 5;
-
-		//	xLoc = rand() % -5 + 5; //xLoc in the range of -5 to 5
-			//yLoc = rand() % -5 + 5; //yLoc in the range of -5 to 5
 			if (_kbhit() != 0) {
 				applyForces();
-
+				if (ch == 'q' || ch == 'Q') {
+					break;
+			}
 			}
 			if (fabs((double)body->GetPosition().x - xVal) <= .5 && fabs((double)body->GetPosition().y - yVal) <= .5 && collide == false) {
 				collide = true;
@@ -70,19 +71,8 @@ int main() {
 				yVal = rand()% 10 - 5;
 				moveTarget(xVal, yVal);
 				 collide = false;
-				//display();
 
 			}
-			if (ch == 'q') {
-				break;
-			}
-		}
-	
+		} while (ch != 'q' || count != 2);
+	}
 }
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
