@@ -1,4 +1,9 @@
 // SnakeGame.cpp : This file contains the 'main' function. Program execution begins and ends there.
+//define and include for homework part 2 remember the order of the includes
+//may be the reason you encounter some errors in running the application
+#define SFML_STATIC
+#include <SFML\Window.hpp>
+#include <SFML\Graphics.hpp>
 
 #include <Box2D.h>
 #include <iostream>;
@@ -9,6 +14,9 @@ extern float yVal; //yLoc in the range of -5 to 5
 int count; //checks to see if target was hit twice.
 bool collide = false;
 extern int ch;
+
+//Part 2 global variables (use extern, define in snake.cpp
+
 
 //introduce the game to the user with instructions for the keys
 //creates physics world(b2world) and snake(physics body b2body)
