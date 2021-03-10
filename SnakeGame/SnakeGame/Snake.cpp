@@ -14,6 +14,8 @@ float timeStep = 1.0f / 1000.0f; //change to 1 / 1000 if moving too fast
 int velocityIterations = 6; //int32 threw error.
 int positionIterations = 2;
 
+
+
 //int ch; //the character to be read by getch
 
 //x and y positions
@@ -29,6 +31,33 @@ b2World world(gravity);
 //the body definition for each item
 b2Body* body;
 
+//PART 2 GLOBAL VARIABLES
+
+//stores multiple b2Vec2 for each position of the target for the game
+b2Vec2 TargetLocations[];
+
+//variable to be used to store multiple b2Vec2 for each position of
+//the target for the game
+b2Vec2* currentLocation;
+
+//create a typedef for the function pointers
+typedef;
+
+
+
+//PART 2 CODE STARTS HERE
+
+//applyforces functions will be used here (processInput checks which input goes to 
+//which applyforces. 
+//at the end of each call, call back to processInput to make sure
+//program can keep checking.
+void processInput() {
+
+}
+
+
+
+//PART 1 CODE STARTS HERE
 
 
 //groundBodyDef.position.Set(0.0f, -10.0f);
@@ -73,3 +102,5 @@ void moveTarget(float& xPos, float& yPos) {
 	xVal = xPos;
 	yVal = yPos;
 }
+
+
