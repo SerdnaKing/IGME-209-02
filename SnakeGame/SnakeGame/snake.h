@@ -6,12 +6,12 @@ void moveTarget(float& xPos, float& yPos);
 
 //part 2
 void processInput();
-void ApplyForceUp(b2Body& player);
-void ApplyForceDown(b2Body& player);
-void ApplyForceLeft(b2Body& player);
-void ApplyForceRight(b2Body& player);
-void StopMoving(b2Body& player);
-void ReverseGravity(b2World& world);
+void ApplyForceUp(b2Body* player);
+void ApplyForceDown(b2Body* player);
+void ApplyForceLeft(b2Body* player);
+void ApplyForceRight(b2Body* player);
+void StopMoving(b2Body* player);
+void ReverseGravity(b2World* world);
 void setUpTargets(int cnt);
 bool selectNextTarget(); //check if this needs to be here or if it can
 //be exclusive to one cpp

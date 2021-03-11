@@ -1,6 +1,9 @@
 #include <iostream>
 using namespace std;
 
+#define SFML_STATIC
+#include <SFML\Window.hpp>
+#include <SFML\Graphics.hpp>
 //add the header to the file
 #include <Box2D.h>
 #include "snake.h"
@@ -17,7 +20,7 @@ int positionIterations = 2;
 
 
 //int ch; //the character to be read by getch
-
+//extern b2Body snake;
 //x and y positions
 float xVal;
 float yVal;
@@ -42,9 +45,10 @@ b2Vec2* currentLocation;
 
 //create a typedef for the function pointers
 typedef;
-
-
-
+typedef void (*inputFunction)(b2Body*);
+inputFunction myFun;
+//tracker to see if gravity is reversed already or not
+bool revGrav = false;
 //PART 2 CODE STARTS HERE
 
 //applyforces functions will be used here (processInput checks which input goes to 
@@ -53,10 +57,65 @@ typedef;
 //program can keep checking.
 void processInput() {
 
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
+		myFun = ApplyForceUp;
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
+		myFun = ApplyForceLeft;
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
+		myFun = ApplyForceDown;
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
+		myFun = ApplyForceRight;
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q)) {
+		myFun = StopMoving;
+	}
+	myFun(body);
+}
+
+//Applies forces in the four main directions of UP DOWN LEFT RIGHT
+void ApplyForceUp(b2Body* player) {
+	player->ApplyForceToCenter(b2Vec2(0.0f, 100.0f), true);
+}
+void ApplyForceDown(b2Body* player) {
+	player->ApplyForceToCenter(b2Vec2(0.0f, -100.0f), true);
+}
+void ApplyForceLeft(b2Body* player) {
+	player->ApplyForceToCenter(b2Vec2(-100.0f, 0.0f), true);
+}
+void ApplyForceRight(b2Body* player) {
+	player->ApplyForceToCenter(b2Vec2(100.0f, 0.0f), true);
+}
+//tells the snake object to stop moving by setting the 
+//b2Body velocity to 0
+void StopMoving(b2Body* player) {
+	player->SetLinearVelocity(b2Vec2(0.0f,0.0f));
+	
+}
+
+//reverses gravity by calling the world method
+//Checks with a bool to see if gravity is already reversed or not.
+void ReverseGravity(b2World* world) {
+	//*world = &world;
+	if (revGrav == false) {
+		world->SetGravity(b2Vec2(0.0f, .1f));
+		revGrav = true;
+	}
+	else
+		world->SetGravity(b2Vec2(0.0f, -.1f));
+		revGrav = false;
+}
+
+void setupTargets(int cnt) {
+
 }
 
 
+bool selectNextTarget() {
 
+}
 //PART 1 CODE STARTS HERE
 
 
