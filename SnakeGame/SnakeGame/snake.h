@@ -11,7 +11,7 @@ void ApplyForceDown(b2Body* player);
 void ApplyForceLeft(b2Body* player);
 void ApplyForceRight(b2Body* player);
 void StopMoving(b2Body* player);
-void ReverseGravity(b2World* world);
+void ReverseGravity(b2Body* body);
 void setUpTargets(int cnt);
 bool selectNextTarget(); //check if this needs to be here or if it can
 //be exclusive to one cpp

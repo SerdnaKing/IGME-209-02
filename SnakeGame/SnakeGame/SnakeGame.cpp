@@ -27,8 +27,17 @@ int main() {
 	printf("Welcome to Snake game! Press q at any time to quit the game.\nThe controls are WASD to control the direction of the snake.\nYou need to reach the targets location twice in order to win!\n"
 		"Press any key, then enter to start the game!");
 	
+	//printf("");
 
-	std::cin >>ch; //dummy user input
+	//executes loop if input fails
+	//executes loop if the input fails (e.g., no characters were read)
+	while (std::cout << "Please enter the number of targets you want (up to 10):" && !(std::cin >>ch) || ) {
+		std::cin.clear(); //clear bad input flag
+		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); //discard input
+		std::cout << "Invalid input; please re-enter.\n";
+	}
+	//setUpTargets(ch); // this will 
+	//open window AFTER getting the numebr from the user
 	//introduce the user and tell user about the key presses
 	//create the ground body and set the position
 	b2BodyDef groundBodyDef;

@@ -46,6 +46,7 @@ b2Vec2* currentLocation;
 //create a typedef for the function pointers
 typedef;
 typedef void (*inputFunction)(b2Body*);
+typedef void(*inputFuntion)(b2World*);
 inputFunction myFun;
 //tracker to see if gravity is reversed already or not
 bool revGrav = false;
@@ -72,7 +73,11 @@ void processInput() {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q)) {
 		myFun = StopMoving;
 	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::F)) {
+		myFun = ReverseGravity;
+	}
 	myFun(body);
+	//myFun(world);
 }
 
 //Applies forces in the four main directions of UP DOWN LEFT RIGHT
@@ -97,25 +102,34 @@ void StopMoving(b2Body* player) {
 
 //reverses gravity by calling the world method
 //Checks with a bool to see if gravity is already reversed or not.
-void ReverseGravity(b2World* world) {
+void ReverseGravity(b2Body* body) {
 	//*world = &world;
 	if (revGrav == false) {
-		world->SetGravity(b2Vec2(0.0f, .1f));
+		world.SetGravity(b2Vec2(0.0f, .1f));
 		revGrav = true;
 	}
-	else
-		world->SetGravity(b2Vec2(0.0f, -.1f));
+	else {
+		world.SetGravity(b2Vec2(0.0f, -.1f));
 		revGrav = false;
+	}
 }
 
 void setupTargets(int cnt) {
-
+	//prompts the user for the number of targets to use in the
+	//game from 1 to 10+ (error check the values) 
+	//creates an array of b2Vec2 positions for the target to move to(sets the global variable
+	//add one additional one at the end of the array with the position of
+	//-1000,-1000 to use to stop the game. 
+	//when the target is moved to that end one(-1k,-1k) then you are done.
+	
 }
 
-
-bool selectNextTarget() {
-
-}
+//
+//bool selectNextTarget() {
+//	//moves the currentTarget pointer to the next valid target
+//	//returns true if there are more targets
+//	//return false if there are no more targets
+//}
 //PART 1 CODE STARTS HERE
 
 
