@@ -121,7 +121,10 @@ void setupTargets(int cnt) {
 	//add one additional one at the end of the array with the position of
 	//-1000,-1000 to use to stop the game. 
 	//when the target is moved to that end one(-1k,-1k) then you are done.
-	
+	if (cnt > 10) {
+		cnt = 10; //this prevents the number from being anything too large to work with
+	}
+
 }
 
 //
