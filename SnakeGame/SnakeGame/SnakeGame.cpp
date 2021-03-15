@@ -36,7 +36,7 @@ int main() {
 		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); //discard input
 		std::cout << "Invalid input; please re-enter.\n";
 	}
-//	setUpTargets(ch); // this will 
+	setupTargets(ch); // this will 
 
 
 
@@ -94,13 +94,14 @@ int main() {
 
 
 		b2Vec2 snakeLoc = body->GetPosition();
-	    //b2Vec2 targetLoc = (xVal, yVal);
+	    b2Vec2 targetLoc(xVal, yVal);
 		mySnake.setPosition(snakeLoc.x, -snakeLoc.y);
 
 		// draw everything here...
 		// window.draw(...);
 		//window.draw(myTarget);
 		window.draw(mySnake);
+		window.draw(myTarget);
 		// end the current frame
 		window.display();
 

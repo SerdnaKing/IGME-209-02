@@ -79,7 +79,10 @@ void processInput() {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::F)) {
 		myFun = ReverseGravity;
 	}
-	myFun(body);
+	if (myFun != nullptr) {
+		myFun(body);
+	}
+
 	//myFun(world);
 }
 
