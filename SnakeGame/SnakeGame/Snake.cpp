@@ -62,6 +62,7 @@ void processInput() {
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
 		myFun = ApplyForceUp;
+		//processInput();
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
 		myFun = ApplyForceLeft;

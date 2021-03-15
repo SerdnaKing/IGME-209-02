@@ -39,34 +39,6 @@ int main() {
 //	setUpTargets(ch); // this will 
 
 
-	sf::RenderWindow window(sf::VideoMode(800, 600), "My window");
-	sf::RectangleShape myRect(sf::Vector2f(200, 150));
-	myRect.setFillColor(sf::Color::Green);
-	myRect.setPosition(200, 350);
-	sf::CircleShape myCircle(50);
-	myCircle.setFillColor(sf::Color::Red);
-	myCircle.setPosition(60, 60);
-	while (window.isOpen()) {
-		// check all the window's events that were triggered since the last iteration of the loop
-		sf::Event event;
-		while (window.pollEvent(event))
-		{
-			// "close requested" event: we close the window
-			if (event.type == sf::Event::Closed)
-				window.close();
-		}
-
-		// clear the window with black color
-		window.clear(sf::Color::Black);
-
-
-		// draw everything here...
-		// window.draw(...);
-		window.draw(myRect);
-		window.draw(myCircle);
-		// end the current frame
-		window.display();
-	}
 
 	//return 0;
 	
@@ -99,30 +71,69 @@ int main() {
 	snakeFixture.shape = &snakeBox;
 	snakeFixture.density = 1.0f;
 
-		do
-		{
-			if (count >= 2) {
-				break; //this will break the loop effectively
-			}
-			
-			update();
-			display();
-			if (_kbhit() != 0) {
-				processInput();
-				//applyForces();
-				if (ch == 'q' || ch == 'Q') {
-					break;
-			}
-			}
-			if (fabs((double)body->GetPosition().x - xVal) <= .5 && fabs((double)body->GetPosition().y - yVal) <= .5 && collide == false) {
-				collide = true;
-				count++;
-				xVal = rand()% 10 - 5;
-				yVal = rand()% 10 - 5;
-				moveTarget(xVal, yVal);
-				 collide = false;
 
-			}
-		} while (ch != 'q' || count != 2);
+	sf::RenderWindow window(sf::VideoMode(800, 600), "My window");
+	sf::RectangleShape myTarget(sf::Vector2f(200, 150));
+	myTarget.setFillColor(sf::Color::Green);
+	myTarget.setPosition(200, 350);
+	sf::CircleShape mySnake(50);
+	mySnake.setFillColor(sf::Color::Red);
+	mySnake.setPosition(60, 60);
+	while (window.isOpen()) {
+		// check all the window's events that were triggered since the last iteration of the loop
+		sf::Event event;
+		while (window.pollEvent(event))
+		{
+			// "close requested" event: we close the window
+			if (event.type == sf::Event::Closed)
+				window.close();
+		}
+
+		// clear the window with black color
+		window.clear(sf::Color::Black);
+
+
+		b2Vec2 snakeLoc = body->GetPosition();
+	    //b2Vec2 targetLoc = (xVal, yVal);
+		mySnake.setPosition(snakeLoc.x, -snakeLoc.y);
+
+		// draw everything here...
+		// window.draw(...);
+		//window.draw(myTarget);
+		window.draw(mySnake);
+		// end the current frame
+		window.display();
+
+		update();
+		display();
+		processInput();
+	}
+
+	//if( myRect)
+		//do
+		//{
+		//	if (count >= 2) {
+		//		break; //this will break the loop effectively
+		//	}
+		//	
+		//	update();
+		//	display();
+		//	if (_kbhit() != 0) {
+		//		processInput();
+		//		//applyForces();
+		//		if (ch == 'q' || ch == 'Q') {
+		//			break;
+		//	}
+		//	}
+		//	if (fabs((double)body->GetPosition().x - xVal) <= .5 && fabs((double)body->GetPosition().y - yVal) <= .5 && collide == false) {
+		//		collide = true;
+		//		count++;
+		//		xVal = rand()% 10 - 5;
+		//		yVal = rand()% 10 - 5;
+		//		moveTarget(xVal, yVal);
+		//		 collide = false;
+
+		//	}
+		//} while (ch != 'q' || count != 2);
 	}
 
