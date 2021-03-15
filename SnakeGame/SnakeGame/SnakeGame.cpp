@@ -16,8 +16,8 @@ bool collide = false;
 extern int ch;
 
 //Part 2 global variables (use extern, define in snake.cpp
-extern b2Vec2 TargetLocations[];
-extern b2Vec2* currentLocation;
+//extern b2Vec2 TargetLocations[];
+//extern b2Vec2* currentLocation;
 //typedef SHOULD be specific to only Snake.cpp (i believe)
 //introduce the game to the user with instructions for the keys
 //creates physics world(b2world) and snake(physics body b2body)
@@ -36,7 +36,40 @@ int main() {
 		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); //discard input
 		std::cout << "Invalid input; please re-enter.\n";
 	}
-	//setUpTargets(ch); // this will 
+//	setUpTargets(ch); // this will 
+
+
+	sf::RenderWindow window(sf::VideoMode(800, 600), "My window");
+	sf::RectangleShape myRect(sf::Vector2f(200, 150));
+	myRect.setFillColor(sf::Color::Green);
+	myRect.setPosition(200, 350);
+	sf::CircleShape myCircle(50);
+	myCircle.setFillColor(sf::Color::Red);
+	myCircle.setPosition(60, 60);
+	while (window.isOpen()) {
+		// check all the window's events that were triggered since the last iteration of the loop
+		sf::Event event;
+		while (window.pollEvent(event))
+		{
+			// "close requested" event: we close the window
+			if (event.type == sf::Event::Closed)
+				window.close();
+		}
+
+		// clear the window with black color
+		window.clear(sf::Color::Black);
+
+
+		// draw everything here...
+		// window.draw(...);
+		window.draw(myRect);
+		window.draw(myCircle);
+		// end the current frame
+		window.display();
+	}
+
+	//return 0;
+	
 	//open window AFTER getting the numebr from the user
 	//introduce the user and tell user about the key presses
 	//create the ground body and set the position
@@ -75,7 +108,8 @@ int main() {
 			update();
 			display();
 			if (_kbhit() != 0) {
-				applyForces();
+				processInput();
+				//applyForces();
 				if (ch == 'q' || ch == 'Q') {
 					break;
 			}

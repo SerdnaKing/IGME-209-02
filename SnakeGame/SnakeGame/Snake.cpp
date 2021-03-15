@@ -39,7 +39,7 @@ b2Body* body;
 //PART 2 GLOBAL VARIABLES
 
 //stores multiple b2Vec2 for each position of the target for the game
-b2Vec2 TargetLocations[];
+b2Vec2 TargetLocations[11];
 
 //variable to be used to store multiple b2Vec2 for each position of
 //the target for the game
@@ -130,9 +130,9 @@ void setupTargets(int cnt) {
 		cnt = 10; //this prevents the number from being anything too large to work with
 	}
 	for (int i = 0; i < cnt; i++) {
-		//TargetLocations[i] = b2Vec2(-10, 0);
+		TargetLocations[i] = b2Vec2(-10, 0);
 	}
-	//TargetLocations[cnt++] = b2Vec2(-1000, -1000);
+	TargetLocations[cnt++] = b2Vec2(-1000, -1000);
 
 }
 

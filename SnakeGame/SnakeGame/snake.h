@@ -19,7 +19,7 @@ bool selectNextTarget(); //check if this needs to be here or if it can
 //create the world object
 extern b2World world;
 extern b2Body* body;
-
+//extern b2Vec2 TargetLocations[];
 ////Part 2 global variables (use extern, define in snake.cpp
 //extern b2Vec2 TargetLocations[];
 //extern b2Vec2 currentLocation;
