@@ -25,6 +25,8 @@ int positionIterations = 2;
 float xVal;
 float yVal;
 int ch;
+
+int countUp = 0;
 //define the gravity vector
 b2Vec2 gravity(0.0f, -.1f); ///lower gravity if necessary
 
@@ -121,18 +123,36 @@ void setupTargets(int cnt) {
 	//add one additional one at the end of the array with the position of
 	//-1000,-1000 to use to stop the game. 
 	//when the target is moved to that end one(-1k,-1k) then you are done.
+	if (cnt < 1) {
+		cnt = 1;//this prevents the user from entering a number too low
+	}
 	if (cnt > 10) {
 		cnt = 10; //this prevents the number from being anything too large to work with
 	}
+	for (int i = 0; i < cnt; i++) {
+		//TargetLocations[i] = b2Vec2(-10, 0);
+	}
+	//TargetLocations[cnt++] = b2Vec2(-1000, -1000);
 
 }
 
 //
-//bool selectNextTarget() {
+bool selectNextTarget() {
 //	//moves the currentTarget pointer to the next valid target
 //	//returns true if there are more targets
 //	//return false if there are no more targets
-//}
+	
+	/*currentLocation = &TargetLocations[countUp++];*/
+	if (TargetLocations[countUp++] != b2Vec2(-1000,-1000)) {
+		currentLocation = &TargetLocations[countUp++];
+		return true;
+	}
+	else {
+		currentLocation = &TargetLocations[countUp++];
+		return false;
+	}
+	countUp++;
+}
 //PART 1 CODE STARTS HERE
 
 

@@ -17,7 +17,7 @@ extern int ch;
 
 //Part 2 global variables (use extern, define in snake.cpp
 extern b2Vec2 TargetLocations[];
-extern b2Vec2 currentLocation;
+extern b2Vec2* currentLocation;
 //typedef SHOULD be specific to only Snake.cpp (i believe)
 //introduce the game to the user with instructions for the keys
 //creates physics world(b2world) and snake(physics body b2body)
@@ -31,7 +31,7 @@ int main() {
 
 	//executes loop if input fails
 	//executes loop if the input fails (e.g., no characters were read)
-	while (std::cout << "Please enter the number of targets you want (up to 10):" && !(std::cin >>ch) || ) {
+	while (std::cout << "Please enter the number of targets you want (up to 10):" && !(std::cin >>ch)) {
 		std::cin.clear(); //clear bad input flag
 		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); //discard input
 		std::cout << "Invalid input; please re-enter.\n";
