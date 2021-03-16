@@ -79,6 +79,11 @@ void processInput() {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::F)) {
 		myFun = ReverseGravity;
 	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::V)) {
+		countUp = 2;
+		selectNextTarget();
+		
+	}
 	if (myFun != nullptr) {
 		myFun(body);
 	}
@@ -134,10 +139,14 @@ void setupTargets(int cnt) {
 		cnt = 10; //this prevents the number from being anything too large to work with
 	}
 	for (int i = 0; i < cnt; i++) {
-		TargetLocations[i] = b2Vec2(-10, 0);
+		xVal = (rand() % 10 - 5);
+		yVal = (rand() % 10 - 5);
+		//5 is at 800, -5 is at 0 (for x)
+		TargetLocations[i] = b2Vec2(xVal, yVal);
 	}
-	TargetLocations[cnt++] = b2Vec2(-1000, -1000);
-
+	TargetLocations[cnt] = b2Vec2(-1000, -1000);
+	currentLocation = &TargetLocations[0];
+	countUp = 0;
 }
 
 //
@@ -147,15 +156,15 @@ bool selectNextTarget() {
 //	//return false if there are no more targets
 	
 	/*currentLocation = &TargetLocations[countUp++];*/
-	if (TargetLocations[countUp++] != b2Vec2(-1000,-1000)) {
-		currentLocation = &TargetLocations[countUp++];
+	if (*(currentLocation+1) != b2Vec2(-1000,-1000)) {
+		currentLocation = &TargetLocations[++countUp];
 		return true;
 	}
 	else {
-		currentLocation = &TargetLocations[countUp++];
+		currentLocation = &TargetLocations[++countUp];
 		return false;
 	}
-	countUp++;
+	// = 2;
 }
 //PART 1 CODE STARTS HERE
 
@@ -172,7 +181,7 @@ void update() { //this method should be done
 //
 void display() {
 	b2Vec2 position = body->GetPosition();
-	printf("Snake: %4.2f , %4.2f Target: %4.2f, %4.2f\n", position.x, position.y ,xVal, yVal);
+	printf("Snake: %4.2f , %4.2f Target: %4.2f, %4.2f, Difference: %4.2f, %4.2f\n", position.x, position.y ,currentLocation->x, currentLocation->y, fabs((double)body->GetPosition().x - currentLocation->x), fabs((double)body->GetPosition().y - -currentLocation->y));
 }
 
 //reads the key presses and applies the forces to the player to move

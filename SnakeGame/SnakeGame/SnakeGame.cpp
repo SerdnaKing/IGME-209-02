@@ -17,7 +17,7 @@ extern int ch;
 
 //Part 2 global variables (use extern, define in snake.cpp
 //extern b2Vec2 TargetLocations[];
-//extern b2Vec2* currentLocation;
+extern b2Vec2* currentLocation;
 //typedef SHOULD be specific to only Snake.cpp (i believe)
 //introduce the game to the user with instructions for the keys
 //creates physics world(b2world) and snake(physics body b2body)
@@ -94,9 +94,9 @@ int main() {
 
 
 		b2Vec2 snakeLoc = body->GetPosition();
-	    b2Vec2 targetLoc(xVal, yVal);
-		mySnake.setPosition(snakeLoc.x, -snakeLoc.y);
-
+	    b2Vec2 targetLoc(currentLocation->x, -currentLocation->y);
+		mySnake.setPosition((snakeLoc.x + 5) * 80, (-snakeLoc.y + 5) *60);
+		myTarget.setPosition((targetLoc.x +5) * 80, 600 -((targetLoc.y + 5) * 60));
 		// draw everything here...
 		// window.draw(...);
 		//window.draw(myTarget);
@@ -104,9 +104,23 @@ int main() {
 		window.draw(myTarget);
 		// end the current frame
 		window.display();
+		if (fabs((double)body->GetPosition().x - currentLocation->x) <= .5 && fabs((double)body->GetPosition().y - -currentLocation->y) <= .5 && collide == false) {
+			collide = true;
+			count++;
+			//xVal = rand()% 10 - 5;
+			//yVal = rand()% 10 - 5;
+		/*	xVal = rand() % 400 - 200;
+			yVal = rand() % 300 - 150;*/
+			if (selectNextTarget() == false) {
+				window.close();
+			}
+			selectNextTarget();
+			//moveTarget(xVal, yVal);
+			 collide = false;
 
+		}
 		update();
-		display();
+		//display();
 		processInput();
 	}
 

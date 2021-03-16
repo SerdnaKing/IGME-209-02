@@ -14,6 +14,7 @@ void StopMoving(b2Body* player);
 void ReverseGravity(b2Body* body);
 void setupTargets(int cnt);
 bool selectNextTarget(); //check if this needs to be here or if it can
+
 //be exclusive to one cpp
 
 //create the world object
