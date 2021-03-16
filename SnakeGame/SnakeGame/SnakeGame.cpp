@@ -26,6 +26,7 @@ extern b2Vec2* currentLocation;
 int main() {
 	printf("Welcome to Snake game!\nThe controls are WASD to control the direction of the snake.\nPress Q to stop all movement and press F to reverse the gravity!\n"
 		"You need to reach the targets location in order to win!\n"
+		"THE MORE TIME(OUT OF 100 SECONDS) YOU HAVE AT THE END, THE BETTER YOU PERFORMED!\n"
 		"Press any key, then enter to start the game!\n");
 	
 	//printf("");
@@ -73,7 +74,7 @@ int main() {
 
 
 	sf::RenderWindow window(sf::VideoMode(900, 700), "My window");
-	sf::RectangleShape myTarget(sf::Vector2f(100, 150));
+	sf::RectangleShape myTarget(sf::Vector2f(50, 50));
 	myTarget.setFillColor(sf::Color::Green);
 	myTarget.setPosition(200, 350);
 	sf::CircleShape mySnake(25);
@@ -108,7 +109,7 @@ int main() {
 			if (selectNextTarget() == false) {
 				window.close();
 				sf::Time elapsedTime = clock.getElapsedTime();
-				std::cout <<  maxTime.asSeconds() - elapsedTime.asSeconds() << std::endl;
+				std::cout <<"SCORE:" << maxTime.asSeconds() - elapsedTime.asSeconds() << std::endl;
 			}
 			else {
 				count++;
