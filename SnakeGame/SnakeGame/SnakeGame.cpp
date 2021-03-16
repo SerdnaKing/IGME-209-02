@@ -37,12 +37,10 @@ int main() {
 		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); //discard input
 		std::cout << "Invalid input; please re-enter.\n";
 	}
-	setupTargets(ch); // this will 
+	setupTargets(ch);
 	sf::Time maxTime = sf::seconds(100);
 	sf::Clock clock;
-	
-	//150 / elapsedTime
-	//return 0;
+
 	
 	//open window AFTER getting the numebr from the user
 	//introduce the user and tell user about the key presses
@@ -107,22 +105,14 @@ int main() {
 		window.display();
 		if (fabs((double)body->GetPosition().x - currentLocation->x) <= .5 && fabs((double)body->GetPosition().y - -currentLocation->y) <= .5 && collide == false) {
 			collide = true;
-			//count++;
-			//xVal = rand()% 10 - 5;
-			//yVal = rand()% 10 - 5;
-		/*	xVal = rand() % 400 - 200;
-			yVal = rand() % 300 - 150;*/
 			if (selectNextTarget() == false) {
 				window.close();
 				sf::Time elapsedTime = clock.getElapsedTime();
 				std::cout <<  maxTime.asSeconds() - elapsedTime.asSeconds() << std::endl;
-			//printf("Score:", maxTime - elapsedTime);
 			}
-			//selectNextTarget();
 			else {
 				count++;
 			}
-			//moveTarget(xVal, yVal);
 			 collide = false;
 
 		}

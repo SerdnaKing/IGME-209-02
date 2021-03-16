@@ -1,8 +1,5 @@
 #pragma once
 void update();
-void display();
-//void applyForces();
-//void moveTarget(float& xPos, float& yPos);
 
 //part 2
 void processInput();

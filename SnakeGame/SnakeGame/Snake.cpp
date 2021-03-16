@@ -158,30 +158,20 @@ void setupTargets(int cnt) {
 //	//returns true if there are more targets
 //	//return false if there are no more targets
 bool selectNextTarget() {
-
-	
-	/*currentLocation = &TargetLocations[countUp++];*/
 	if (*(currentLocation+1) != b2Vec2(-1000,-1000)) {
 		currentLocation = &TargetLocations[++countUp];
 		return true;
 	}
 	else {
-		//currentLocation = &TargetLocations[++countUp];
 		return false;
 	}
 }
 //PART 1 CODE STARTS HERE
 
-void display() {
-	b2Vec2 position = body->GetPosition();
-	//sf::Time::asSeconds;
-	printf("Snake: %4.2f , %4.2f Target: %4.2f, %4.2f, Difference: %4.2f, %4.2f\n", position.x, position.y, currentLocation->x, currentLocation->y, fabs((double)body->GetPosition().x - currentLocation->x), fabs((double)body->GetPosition().y - -currentLocation->y));
-}
 //groundBodyDef.position.Set(0.0f, -10.0f);
 //updates the physics world, this will not direcly be
 //moving the snake, just updating the Box2D world.
-void update() { //this method should be done
-	 //referencing above, is this step necessary or could it be done just above?
+void update() {
 	world.Step(timeStep, velocityIterations, positionIterations);
 
 }
