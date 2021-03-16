@@ -25,14 +25,14 @@ int positionIterations = 2;
 float xVal;
 float yVal;
 int ch;
-int scoreCounter = 0;
+//int scoreCounter = 0;
 int countUp = 0;
 //define the gravity vector
 b2Vec2 gravity(0.0f, -.1f); ///lower gravity if necessary
 
 //create the world object
 b2World world(gravity);
-
+int scoreCount = 150;
 //the body definition for each item
 b2Body* body;
 
@@ -60,30 +60,37 @@ bool revGrav = false;
 //program can keep checking.
 void processInput() {
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) ) {
+		scoreCount--;
 		myFun = ApplyForceUp;
 		//processInput();
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
+		scoreCount--;
 		myFun = ApplyForceLeft;
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
+		scoreCount--;
 		myFun = ApplyForceDown;
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
+		scoreCount--;
 		myFun = ApplyForceRight;
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q)) {
+		scoreCount--;
 		myFun = StopMoving;
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::F)) {
+		scoreCount--;
 		myFun = ReverseGravity;
 	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::V)) {
+	
+	/*if (sf::Keyboard::isKeyPressed(sf::Keyboard::V)) {
 		countUp = 2;
 		selectNextTarget();
 		
-	}
+	}*/
 	if (myFun != nullptr) {
 		myFun(body);
 	}
@@ -139,12 +146,12 @@ void setupTargets(int cnt) {
 	for (int i = 0; i < cnt; i++) {
 		xVal = (rand() % 10 - 5);
 		yVal = (rand() % 10 - 5);
-		//5 is at 800, -5 is at 0 (for x)
+
 		TargetLocations[i] = b2Vec2(xVal, yVal);
 	}
 	TargetLocations[cnt] = b2Vec2(-1000, -1000);
 	currentLocation = &TargetLocations[0];
-	countUp = 0;
+	//countUp = 0;
 }
 
 //	//moves the currentTarget pointer to the next valid target
@@ -159,7 +166,7 @@ bool selectNextTarget() {
 		return true;
 	}
 	else {
-		currentLocation = &TargetLocations[++countUp];
+		//currentLocation = &TargetLocations[++countUp];
 		return false;
 	}
 }
@@ -167,6 +174,7 @@ bool selectNextTarget() {
 
 void display() {
 	b2Vec2 position = body->GetPosition();
+	//sf::Time::asSeconds;
 	printf("Snake: %4.2f , %4.2f Target: %4.2f, %4.2f, Difference: %4.2f, %4.2f\n", position.x, position.y, currentLocation->x, currentLocation->y, fabs((double)body->GetPosition().x - currentLocation->x), fabs((double)body->GetPosition().y - -currentLocation->y));
 }
 //groundBodyDef.position.Set(0.0f, -10.0f);

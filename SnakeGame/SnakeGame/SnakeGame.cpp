@@ -14,7 +14,7 @@ extern float yVal; //yLoc in the range of -5 to 5
 int count; //checks to see if target was hit twice.
 bool collide = false;
 extern int ch;
-extern int scoreCounter;
+extern int scoreCount;
 //Part 2 global variables (use extern, define in snake.cpp
 //extern b2Vec2 TargetLocations[];
 extern b2Vec2* currentLocation;
@@ -24,7 +24,8 @@ extern b2Vec2* currentLocation;
 //creates a loop to keep playing until user hits ESC or gets 2 targets
 
 int main() {
-	printf("Welcome to Snake game! Press q at any time to quit the game.\nThe controls are WASD to control the direction of the snake.\nYou need to reach the targets location twice in order to win!\n"
+	printf("Welcome to Snake game!\nThe controls are WASD to control the direction of the snake.\nPress Q to stop all movement and press F to reverse the gravity!\n"
+		"You need to reach the targets location in order to win!\n"
 		"Press any key, then enter to start the game!\n");
 	
 	//printf("");
@@ -37,9 +38,10 @@ int main() {
 		std::cout << "Invalid input; please re-enter.\n";
 	}
 	setupTargets(ch); // this will 
-
-
-
+	sf::Time maxTime = sf::seconds(100);
+	sf::Clock clock;
+	
+	//150 / elapsedTime
 	//return 0;
 	
 	//open window AFTER getting the numebr from the user
@@ -105,50 +107,27 @@ int main() {
 		window.display();
 		if (fabs((double)body->GetPosition().x - currentLocation->x) <= .5 && fabs((double)body->GetPosition().y - -currentLocation->y) <= .5 && collide == false) {
 			collide = true;
-			count++;
+			//count++;
 			//xVal = rand()% 10 - 5;
 			//yVal = rand()% 10 - 5;
 		/*	xVal = rand() % 400 - 200;
 			yVal = rand() % 300 - 150;*/
 			if (selectNextTarget() == false) {
 				window.close();
-			//	printf("Score: %4.2f", );
+				sf::Time elapsedTime = clock.getElapsedTime();
+				std::cout <<  maxTime.asSeconds() - elapsedTime.asSeconds() << std::endl;
+			//printf("Score:", maxTime - elapsedTime);
 			}
-			selectNextTarget();
+			//selectNextTarget();
+			else {
+				count++;
+			}
 			//moveTarget(xVal, yVal);
 			 collide = false;
 
 		}
 		update();
-		display();
 		processInput();
 	}
-
-	//if( myRect)
-		//do
-		//{
-		//	if (count >= 2) {
-		//		break; //this will break the loop effectively
-		//	}
-		//	
-		//	update();
-		//	display();
-		//	if (_kbhit() != 0) {
-		//		processInput();
-		//		//applyForces();
-		//		if (ch == 'q' || ch == 'Q') {
-		//			break;
-		//	}
-		//	}
-		//	if (fabs((double)body->GetPosition().x - xVal) <= .5 && fabs((double)body->GetPosition().y - yVal) <= .5 && collide == false) {
-		//		collide = true;
-		//		count++;
-		//		xVal = rand()% 10 - 5;
-		//		yVal = rand()% 10 - 5;
-		//		moveTarget(xVal, yVal);
-		//		 collide = false;
-
-		//	}
-		//} while (ch != 'q' || count != 2);
 	}
 
