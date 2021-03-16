@@ -14,7 +14,7 @@ extern float yVal; //yLoc in the range of -5 to 5
 int count; //checks to see if target was hit twice.
 bool collide = false;
 extern int ch;
-
+extern int scoreCounter;
 //Part 2 global variables (use extern, define in snake.cpp
 //extern b2Vec2 TargetLocations[];
 extern b2Vec2* currentLocation;
@@ -25,7 +25,7 @@ extern b2Vec2* currentLocation;
 
 int main() {
 	printf("Welcome to Snake game! Press q at any time to quit the game.\nThe controls are WASD to control the direction of the snake.\nYou need to reach the targets location twice in order to win!\n"
-		"Press any key, then enter to start the game!");
+		"Press any key, then enter to start the game!\n");
 	
 	//printf("");
 
@@ -72,11 +72,11 @@ int main() {
 	snakeFixture.density = 1.0f;
 
 
-	sf::RenderWindow window(sf::VideoMode(800, 600), "My window");
-	sf::RectangleShape myTarget(sf::Vector2f(200, 150));
+	sf::RenderWindow window(sf::VideoMode(900, 700), "My window");
+	sf::RectangleShape myTarget(sf::Vector2f(100, 150));
 	myTarget.setFillColor(sf::Color::Green);
 	myTarget.setPosition(200, 350);
-	sf::CircleShape mySnake(50);
+	sf::CircleShape mySnake(25);
 	mySnake.setFillColor(sf::Color::Red);
 	mySnake.setPosition(60, 60);
 	while (window.isOpen()) {
@@ -91,15 +91,14 @@ int main() {
 
 		// clear the window with black color
 		window.clear(sf::Color::Black);
-
+		
 
 		b2Vec2 snakeLoc = body->GetPosition();
 	    b2Vec2 targetLoc(currentLocation->x, -currentLocation->y);
 		mySnake.setPosition((snakeLoc.x + 5) * 80, (-snakeLoc.y + 5) *60);
 		myTarget.setPosition((targetLoc.x +5) * 80, 600 -((targetLoc.y + 5) * 60));
 		// draw everything here...
-		// window.draw(...);
-		//window.draw(myTarget);
+	
 		window.draw(mySnake);
 		window.draw(myTarget);
 		// end the current frame
@@ -113,6 +112,7 @@ int main() {
 			yVal = rand() % 300 - 150;*/
 			if (selectNextTarget() == false) {
 				window.close();
+			//	printf("Score: %4.2f", );
 			}
 			selectNextTarget();
 			//moveTarget(xVal, yVal);
@@ -120,7 +120,7 @@ int main() {
 
 		}
 		update();
-		//display();
+		display();
 		processInput();
 	}
 

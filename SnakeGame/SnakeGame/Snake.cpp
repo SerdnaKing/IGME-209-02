@@ -13,7 +13,7 @@ using namespace std;
 
 //define all global variables here:
 //things will go fast (possibly)
-float timeStep = 1.0f / 1000.0f; //change to 1 / 1000 if moving too fast
+float timeStep = 1.0f / 10000.0f; //change to 1 / 1000 if moving too fast
 int velocityIterations = 6; //int32 threw error.
 int positionIterations = 2;
 
@@ -25,7 +25,7 @@ int positionIterations = 2;
 float xVal;
 float yVal;
 int ch;
-
+int scoreCounter = 0;
 int countUp = 0;
 //define the gravity vector
 b2Vec2 gravity(0.0f, -.1f); ///lower gravity if necessary
@@ -46,9 +46,9 @@ b2Vec2 TargetLocations[11];
 b2Vec2* currentLocation;
 
 //create a typedef for the function pointers
-typedef;
+//typedef;
 typedef void (*inputFunction)(b2Body*);
-typedef void(*inputFuntion)(b2World*);
+//typedef void(*inputFuntion)(b2World*);
 inputFunction myFun;
 //tracker to see if gravity is reversed already or not
 bool revGrav = false;
@@ -87,8 +87,6 @@ void processInput() {
 	if (myFun != nullptr) {
 		myFun(body);
 	}
-
-	//myFun(world);
 }
 
 //Applies forces in the four main directions of UP DOWN LEFT RIGHT
@@ -124,14 +122,14 @@ void ReverseGravity(b2Body* body) {
 		revGrav = false;
 	}
 }
-
-void setupTargets(int cnt) {
 	//prompts the user for the number of targets to use in the
 	//game from 1 to 10+ (error check the values) 
 	//creates an array of b2Vec2 positions for the target to move to(sets the global variable
 	//add one additional one at the end of the array with the position of
 	//-1000,-1000 to use to stop the game. 
 	//when the target is moved to that end one(-1k,-1k) then you are done.
+void setupTargets(int cnt) {
+
 	if (cnt < 1) {
 		cnt = 1;//this prevents the user from entering a number too low
 	}
@@ -149,11 +147,11 @@ void setupTargets(int cnt) {
 	countUp = 0;
 }
 
-//
-bool selectNextTarget() {
 //	//moves the currentTarget pointer to the next valid target
 //	//returns true if there are more targets
 //	//return false if there are no more targets
+bool selectNextTarget() {
+
 	
 	/*currentLocation = &TargetLocations[countUp++];*/
 	if (*(currentLocation+1) != b2Vec2(-1000,-1000)) {
@@ -164,52 +162,22 @@ bool selectNextTarget() {
 		currentLocation = &TargetLocations[++countUp];
 		return false;
 	}
-	// = 2;
 }
 //PART 1 CODE STARTS HERE
 
-
+void display() {
+	b2Vec2 position = body->GetPosition();
+	printf("Snake: %4.2f , %4.2f Target: %4.2f, %4.2f, Difference: %4.2f, %4.2f\n", position.x, position.y, currentLocation->x, currentLocation->y, fabs((double)body->GetPosition().x - currentLocation->x), fabs((double)body->GetPosition().y - -currentLocation->y));
+}
 //groundBodyDef.position.Set(0.0f, -10.0f);
 //updates the physics world, this will not direcly be
 //moving the snake, just updating the Box2D world.
 void update() { //this method should be done
 	 //referencing above, is this step necessary or could it be done just above?
 	world.Step(timeStep, velocityIterations, positionIterations);
+
 }
 
-//displays the position of the target and the player
-//
-void display() {
-	b2Vec2 position = body->GetPosition();
-	printf("Snake: %4.2f , %4.2f Target: %4.2f, %4.2f, Difference: %4.2f, %4.2f\n", position.x, position.y ,currentLocation->x, currentLocation->y, fabs((double)body->GetPosition().x - currentLocation->x), fabs((double)body->GetPosition().y - -currentLocation->y));
-}
 
-//reads the key presses and applies the forces to the player to move
-//use ApplyForceToCenter to add the force to the snake
-//will NOT be moving the player directly
-void applyForces() {
-	//bind to wasd for direction
-	ch = _getch();
-		if (ch == 'w') {
-			body->ApplyForceToCenter(b2Vec2(0,100), true);
-		}
-		if (ch == 'a') {
-			body->ApplyForceToCenter(b2Vec2(-100, 0), true);
-		}
-		if (ch == 's') {
-			body->ApplyForceToCenter(b2Vec2(0, -100), true);
-		}
-		if (ch == 'd') {
-			body->ApplyForceToCenter(b2Vec2(100, 0), true);
-		}
-}
-//moves the target to a new location
-//location will be in the range of -5.0 -> 5.0 for both x and y
-//make the location random (within the bounds)
-void moveTarget(float& xPos, float& yPos) {
-	//take the value and push it into a recognized variable
-	xVal = xPos;
-	yVal = yPos;
-}
 
 
