@@ -1,13 +1,27 @@
 // ClassesHW.cpp : This file contains the 'main' function. Program execution begins and ends there.
 //
-
 #include <iostream>
+using namespace std;
+#include "Player.h"
 
 int main()
 {
-    std::cout << "Hello World!\n";
-}
+    //create a default player as a local variable,
+    //create a parameterized player on the stack, and a default on the heap
+    //lastly make a fourth on the heap with the parameterized constructor
+    Player kiir;
+    Player henk((char*)"Henk", 16, 18, 14);
+    //remember that using new will return a pointer
+    Player* archimedes = new Player();
+    Player* anabeth = new Player((char*)"Anabeth", 13, 15, 18);
+    kiir.printPlayer();
+    henk.printPlayer();
+    archimedes->printPlayer();
+    anabeth->printPlayer();
 
+    delete[] archimedes;
+    delete[] anabeth;
+}
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
 // Debug program: F5 or Debug > Start Debugging menu
 
