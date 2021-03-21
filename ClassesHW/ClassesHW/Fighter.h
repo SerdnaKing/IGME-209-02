@@ -10,10 +10,10 @@ public:
     Fighter();
     Fighter(char* name, int weaponSkill, int str, int con, int dex);
     //fighter destructor
-    ~Fighter();
+   // ~Fighter();
     //declare a public printFighter with no parameters
     void printFighter();
-
+    void Attack(Player* playername);
 private:
     int weaponSkill;
 };

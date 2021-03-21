@@ -1,7 +1,7 @@
 #include "Player.h"
 #include <iostream>
 using namespace std;
-char* userName;
+
 //default and parameterized constructors
 Player::Player() {
 	name = (char*)"Unknown";
@@ -16,15 +16,22 @@ Player::Player(char* name, int str, int con, int dex) {
 	dexterity = dex;
 }
 //destructor
-Player::~Player() {
-	printf("Deleted Player Stuff\n");
-}
+//Player::~Player() {
+//	printf("Deleted Player Stuff\n");
+//}
 
 //player name getter
- char Player::getName() {
-	userName = name;
-	 return* userName;
+ char *Player::getName() {
+	//userName = name;
+	 //cout << ()name;
+	 return (char*)name;
 }
+ //attack function is working
+ void Player::Attack(Player* playername) {
+	 cout << (char*)name << " has attacked " << (char*)playername->name << endl;
+	// printf(*name + " has attacked " + *playername->name);
+}
+
  //print method
 void Player::printPlayer() {
 	cout << name << endl;

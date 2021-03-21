@@ -24,10 +24,12 @@ int main()
     Fighter treybrin((char*)"Treybrin", 50, 18, 16, 15);
     valerica.printFighter();
     treybrin.printFighter();
-
+    anabeth->Attack(&henk);
+    treybrin.Attack(&henk);
     //deleters
     delete[] archimedes;
     delete[] anabeth;
+ 
 }
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
 // Debug program: F5 or Debug > Start Debugging menu

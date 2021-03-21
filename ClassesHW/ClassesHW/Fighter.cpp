@@ -12,10 +12,15 @@ Fighter::Fighter(char* name, int weaponSkill, int str, int con, int dex)
 	
 }
 //destructor
-Fighter::~Fighter() {
-	printf("Destroyed Fighter Stuff");
-}
+//Fighter::~Fighter() {
+//	printf("Destroyed Fighter Stuff");
+//}
 //print method
+ //attack function is working
+ void Fighter::Attack(Player* playername) {
+	 cout << getName() << " has attacked " << playername->getName() << endl;
+	// printf(*name + " has attacked " + *playername->name);
+}
 void Fighter::printFighter() {
 	Player::printPlayer();
 	cout << weaponSkill <<endl;

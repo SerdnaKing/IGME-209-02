@@ -6,10 +6,10 @@ public:
 	Player();
 	Player(char* name, int str, int con, int dex);
 	//player destructor
-	~Player();
-	char getName();
+	//~Player();
+	char *getName();
 	void printPlayer();
-	void Attack(Player* player);
+	void Attack(Player* playername);
 private:
 	//private members go here
 	char* name;
