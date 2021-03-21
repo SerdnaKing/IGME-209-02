@@ -3,12 +3,13 @@
 #include <iostream>
 using namespace std;
 #include "Player.h"
-
+#include "Fighter.h"
 int main()
 {
     //create a default player as a local variable,
     //create a parameterized player on the stack, and a default on the heap
     //lastly make a fourth on the heap with the parameterized constructor
+    //PART 1
     Player kiir;
     Player henk((char*)"Henk", 16, 18, 14);
     //remember that using new will return a pointer
@@ -18,7 +19,13 @@ int main()
     henk.printPlayer();
     archimedes->printPlayer();
     anabeth->printPlayer();
+    //PART 2
+    Fighter valerica;
+    Fighter treybrin((char*)"Treybrin", 50, 18, 16, 15);
+    valerica.printFighter();
+    treybrin.printFighter();
 
+    //deleters
     delete[] archimedes;
     delete[] anabeth;
 }
