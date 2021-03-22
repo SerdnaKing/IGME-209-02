@@ -4,9 +4,11 @@
 using namespace std;
 #include "Player.h"
 #include "Fighter.h"
+#include <time.h>
 int main()
 {
-    srand(2);
+    time_t t;
+    srand((unsigned) time(&t));
     //create a default player as a local variable,
     //create a parameterized player on the stack, and a default on the heap
     //lastly make a fourth on the heap with the parameterized constructor
@@ -30,7 +32,12 @@ int main()
 
     //deleters if they weren't created as an array don't delete them as an array.
   
-
+    const char* funkyFreshNames[10] = { "Punky Brewmaster","David No-Nose McGee",
+                                        "Flat Stanley's Brother: Obtuse Charles", 
+                                        "Beauregard McBigMac",
+                                         "Estranged Uncle Eddy","Crystal Pepsi TM",
+                                         "Genghis Ron","Spaghetti Joe",
+                                         "Garlic Bread","Fuzzbee Morse"};
     //PART 3
    //define an array of pointers to player objects
     Player* battlers[10];
@@ -40,12 +47,12 @@ int main()
     for (int i = 0; i < 10; i++) {
         int randomNumber = rand() % 2;
         if (randomNumber == 1) {
-            Player* p = new Player((char*)"BobbyBlueShoes", 10, 10, 10);
+            Player* p = new Player((char*)funkyFreshNames[i], 10, 10, 10);
             battlers[i] = p;
    
         }
         else {
-            Fighter* fighter = new Fighter((char*)"TonyTreeHead", 15, 15, 15, 15);
+            Fighter* fighter = new Fighter((char*)funkyFreshNames[i], 15, 15, 15, 15);
             battlers[i] = fighter;
             
         }

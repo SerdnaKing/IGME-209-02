@@ -13,7 +13,7 @@ Fighter::Fighter(char* name, int weaponSkill, int str, int con, int dex)
 }
 //destructor
 Fighter::~Fighter() {
-	printf("Destroying Fighter object");
+	printf("Destroying Fighter object\n");
 }
 //print method
  //attack function is working
