@@ -16,9 +16,9 @@ Player::Player(char* name, int str, int con, int dex) {
 	dexterity = dex;
 }
 //destructor
-//Player::~Player() {
-//	printf("Deleted Player Stuff\n");
-//}
+Player::~Player() {
+	printf("Destroying Player Object\n");
+}
 
 //player name getter
  char *Player::getName() {

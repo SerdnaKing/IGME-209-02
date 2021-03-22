@@ -6,6 +6,7 @@ using namespace std;
 #include "Fighter.h"
 int main()
 {
+    srand(2);
     //create a default player as a local variable,
     //create a parameterized player on the stack, and a default on the heap
     //lastly make a fourth on the heap with the parameterized constructor
@@ -26,10 +27,65 @@ int main()
     treybrin.printFighter();
     anabeth->Attack(&henk);
     treybrin.Attack(&henk);
-    //deleters
-    delete[] archimedes;
-    delete[] anabeth;
- 
+
+    //deleters if they weren't created as an array don't delete them as an array.
+  
+
+    //PART 3
+   //define an array of pointers to player objects
+    Player* battlers[10];
+    //loop 10 times and randomly create either a player or a fighter object at the current spot
+    //in the array. Use rand() to get a random numebr and mod to make it either a 1 or a 0
+    //to determine either a fighter or a player
+    for (int i = 0; i < 10; i++) {
+        int randomNumber = rand() % 2;
+        if (randomNumber == 1) {
+            Player* p = new Player((char*)"BobbyBlueShoes", 10, 10, 10);
+            battlers[i] = p;
+   
+        }
+        else {
+            Fighter* fighter = new Fighter((char*)"TonyTreeHead", 15, 15, 15, 15);
+            battlers[i] = fighter;
+            
+        }
+    }
+    //in a separate loop have the players and fighters battle each other. When a battler is 
+    //attacked assume they die instantly and set their pointer in the array to nullptr.
+    //Delete the pointers before losing it so that no memory is leaked (e.g delete THEN set to nullptr)
+    int deadPeople = 0;
+   do {
+        int randomEnemy = rand() % 10;
+        int randomTarget = rand() % 10;
+        while (randomEnemy == randomTarget && battlers[randomEnemy] != nullptr && battlers[randomTarget] != nullptr) {
+            randomEnemy = rand() % 10;
+            randomTarget = rand() % 10;
+        }
+        if (battlers[randomEnemy] != nullptr && battlers[randomTarget] != nullptr) {
+            battlers[randomEnemy]->Attack(battlers[randomTarget]);
+            delete battlers[randomTarget];
+            battlers[randomTarget] = nullptr;
+            deadPeople++;
+     }
+       
+       
+       
+    } while (deadPeople != 9);
+
+    //check each index for the one player left standing and declare them the winner
+    for (int k = 0; k < 10; k++) {
+        if (battlers[k] != nullptr) {
+            cout << "The winner is: " << battlers[k]->getName() << endl;
+        }
+    }
+
+    //delete battlers to remove chances of memory leakage
+    delete archimedes;
+    delete anabeth;
+   /* for (int i = 0; i < 10; i++) {
+        delete[]battlers[i];
+    }*/
+    delete[] *battlers;
 }
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
 // Debug program: F5 or Debug > Start Debugging menu

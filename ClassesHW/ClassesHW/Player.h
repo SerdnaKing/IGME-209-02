@@ -6,7 +6,7 @@ public:
 	Player();
 	Player(char* name, int str, int con, int dex);
 	//player destructor
-	//~Player();
+	~Player();
 	char *getName();
 	void printPlayer();
 	void Attack(Player* playername);
