@@ -72,13 +72,8 @@ void calculateTimer(int size) {
 }
 int main()
 {
-   // double time_taken;
-   
-
     calculateTimer(1000000);
     calculateTimer(100000);
     calculateTimer(10000);
     calculateTimer(1000);
-
-
 }
