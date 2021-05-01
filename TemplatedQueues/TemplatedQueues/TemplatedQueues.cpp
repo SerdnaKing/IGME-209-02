@@ -8,9 +8,15 @@ using namespace std;
 
 int main()
 {
-    std::cout << "Hello World!\n";
     TemplatedQueue<int> newList;
     newList.Print();
+    newList.Push(3);
+    newList.Push(3);
+    newList.Push(3);
+    newList.Push(3);
+    newList.Print();
+    newList.Pop();
+
     newList.GetSize();
 
 }

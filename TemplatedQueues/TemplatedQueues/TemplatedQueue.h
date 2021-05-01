@@ -7,14 +7,15 @@ class TemplatedQueue
 {
 public:
 	//data variables
-	T queue[];
-	T info;
+	T* queue;
+	//T info;
 	//keeps track of the size of the queue, useful for
 	//when you're making a larger queue
 	//methods
 	int size; 
 	int queueSize;
 	TemplatedQueue();
+	TemplatedQueue<T>::TemplatedQueue(TemplatedQueue<T>& other);
 	void Push(T info);
 	void Pop();
 	void Print();
@@ -33,6 +34,16 @@ TemplatedQueue<T>::TemplatedQueue() {
 	queueSize = 5;
 }
 
+//template copy;
+template<class T>
+TemplatedQueue<T>::TemplatedQueue(TemplatedQueue<T>&other) {
+	size = other.size;
+	queueSize = other.queueSize;
+	queue = new T[queueSize];
+	for (int i = 0; i < queueSize; i++) {
+		queue[i] = other.queue[i];
+	}
+}
 ////copy constructor ???
 //template<class T>
 //vp
@@ -41,11 +52,12 @@ template <class T>
 void TemplatedQueue<T>::Push(T info) {
 	if (size == queueSize) {
 		//make a temporary queue with double the size, 
-		T tempQueue = new T[queueSize * 2];
+		T* tempQueue = new T[queueSize * 2];
 		//copy over queue data,
 		for (int i = 0; i < queueSize; i++) {
 			tempQueue[i] = queue[i];
 		}
+		//std::copy()
 		//delete original
 		delete[] queue;
 		//then set temp = queue, 
@@ -58,7 +70,7 @@ void TemplatedQueue<T>::Push(T info) {
 
 template <class T>
 void TemplatedQueue<T>::Pop() {
-	queue[0] = nullptr;
+	//T.default()
 	for (int i = 1; i < size; i++) {
 		queue[i - 1] = queue[i];
 	}
@@ -68,6 +80,9 @@ template <class T>
 void TemplatedQueue<T>::Print() {
 	for (int i = 0; i < size; i++) {
 		cout << queue[i] << endl;
+	}
+	if (size == 0) {
+		cout << "Nothing but us chickens" << endl;
 	}
 }
 template <class T>
