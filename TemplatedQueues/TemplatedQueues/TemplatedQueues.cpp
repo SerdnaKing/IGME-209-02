@@ -2,10 +2,17 @@
 //
 
 #include <iostream>
+#include "TemplatedQueue.h"
+
+using namespace std;
 
 int main()
 {
     std::cout << "Hello World!\n";
+    TemplatedQueue<int> newList;
+    newList.Print();
+    newList.GetSize();
+
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu

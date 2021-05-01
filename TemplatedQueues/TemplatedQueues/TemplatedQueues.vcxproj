@@ -139,7 +139,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="TemplatedQueue.cpp" />
     <ClCompile Include="TemplatedQueues.cpp" />
   </ItemGroup>
   <ItemGroup>

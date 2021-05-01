@@ -18,9 +18,6 @@
     <ClCompile Include="TemplatedQueues.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="TemplatedQueue.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="TemplatedQueue.h">
