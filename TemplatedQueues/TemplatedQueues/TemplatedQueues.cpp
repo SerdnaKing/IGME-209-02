@@ -10,14 +10,34 @@ int main()
 {
     TemplatedQueue<int> newList;
     newList.Print();
-    newList.Push(3);
-    newList.Push(3);
-    newList.Push(3);
+    newList.Push(4);
     newList.Push(3);
     newList.Print();
     newList.Pop();
-
+    newList.Print();
     newList.GetSize();
+    cout << "Popping a number" << endl;
+    newList.Pop();
+    cout << "Is the queue empty?(1 = yes, 0 = no)" << newList.IsEmpty() << endl;
+
+    TemplatedQueue<int> intList(newList);
+    intList.Print();
+    //copy assignment operator
+    TemplatedQueue<int> anotherList = intList;
+    anotherList.Print();
+    //intList = newList;
+
+    TemplatedQueue<string> newString;
+    cout << "Adding a chicken" << endl;
+    newString.Push("Chicken MAshed Potato");
+    newString.Print();
+
+    TemplatedQueue<string> stringList(newString);
+    stringList.Print();
+    //copy assignment operator
+    TemplatedQueue<string> anotherStringList = stringList;
+    anotherList.Print();
+
 
 }
 

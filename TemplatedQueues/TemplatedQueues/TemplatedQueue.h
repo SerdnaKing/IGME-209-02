@@ -15,7 +15,8 @@ public:
 	int size; 
 	int queueSize;
 	TemplatedQueue();
-	TemplatedQueue<T>::TemplatedQueue(TemplatedQueue<T>& other);
+	TemplatedQueue(TemplatedQueue<T>& other);
+	TemplatedQueue<T>& operator= (const TemplatedQueue<T>& other);
 	void Push(T info);
 	void Pop();
 	void Print();
@@ -43,6 +44,18 @@ TemplatedQueue<T>::TemplatedQueue(TemplatedQueue<T>&other) {
 	for (int i = 0; i < queueSize; i++) {
 		queue[i] = other.queue[i];
 	}
+}
+template <class T>
+TemplatedQueue<T>& TemplatedQueue<T>::operator= (const TemplatedQueue<T>&other) {
+	if (this != &other) {
+		size = other.size;
+		queueSize = other.queueSize;
+		queue = new T[queueSize];
+		for (int i = 0; i < queueSize; i++) {
+			queue[i] = other.queue[i];
+		}
+	}
+	return *this;
 }
 ////copy constructor ???
 //template<class T>
