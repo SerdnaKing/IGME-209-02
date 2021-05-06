@@ -67,8 +67,15 @@ double calculateValue()
 {
 	double coinValue = 0.0;
 
-	// TODO DSA1
-
+	//take a time based on function call (clockTimer.now() and subtract when the clock started
+	//this will calculate the time elapsed in milliseconds
+	auto EndTime = chrono::duration_cast<chrono::milliseconds>(clockTimer.now() - start_time);
+	//coinValue = 3 seconds (3000ms) - the current time elapsed since start * 100;
+	coinValue = (3000 - EndTime.count()) * 100;
+	//this will constantly check if the value is at or below zero, setting it to 0
+	if (coinValue <= 0.0) {
+		coinValue = 0.0;
+	}
 	return coinValue;
 }
 
