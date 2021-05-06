@@ -28,10 +28,25 @@ ofstream walletFile("walletFile.txt");;
 /// <returns></returns>
 string mineKey()
 {
+	//the random generation is already managed by the main's call to a timer
+
 	string key;
-
-	// TODO DSA1
-
+	//make a max of 9 for the random
+	int max = 9;
+	//initialize random
+	int random;
+	//loop through 80 times to generate 80 random numbers
+	//assign the random int to a string using to_String set to a temporary 
+	//string
+	//append the temp String to the key.
+	for (int i = 0; i < 80; i++) {
+		random = rand() % max;
+		string newString = to_string(random);
+		key.append(newString);
+	}
+	//with this set up, each call to mineKey() in main will generate
+	//a completely random string of 80 numbers
+	
 	return key;
 }
 
