@@ -68,10 +68,7 @@ string readNextCrypto()
 
 	crypto = arrayOfKeys[counter];
 	counter++;
-	//ifstream ins("cryptoFile.txt");
-	//// TODO DSA1
-	//cryptoFile.open("cryptoFile.txt");
-	//getline(cryptoFile, crypto);
+
 	return crypto;
 }
 
@@ -93,6 +90,9 @@ double calculateValue()
 
 int main()
 {
+	//at the beginning of each call, clear out the wallet from the last run
+//	walletFile.open("walletFile.txt", ios::trunc);
+	//walletFile.close();
 	start_time = clockTimer.now();
 	srand(2021);
 	Wallet myWallet;
@@ -121,11 +121,19 @@ int main()
 				Coin* newCoin = new Coin(key, calculateValue());
 				myWallet.AddCoin(newCoin);
 				cnt++;
+				walletFile.open("walletFile.txt");
+				if (walletFile.is_open()) {
+						walletFile << key << "\n";
+					walletFile.close();
+				}
+
+				
 				//move onto the next crypto
 				crypto = readNextCrypto();
 				//do I also get a new key?
 				key = mineKey();
-
+				//open up the walletFile and add the key to the list
+			
 				//write out the keys to the wallet file
 
 			}
@@ -135,9 +143,11 @@ int main()
 				cnt++;
 				//loop back to the start and repeat until the key has a crypto
 			}
+			//if the value of coins ever reaches zero, break immediately
 			if (value == 0.0) {
 				break;
 			}
+			//check to make sure that the key is not an empty string (signifying the end of the list)
 		} while (value != 0.0 || key == "");
 
 		
