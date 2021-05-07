@@ -19,6 +19,8 @@ std::chrono::high_resolution_clock::time_point start_time;
 ifstream cryptoFile("cryptoFile.txt");;
 ofstream walletFile("walletFile.txt");;
 
+//count initialization for readNextCrypto
+int counter = 0;
 
 /// <summary>
 /// Generates an 80 charater long string with random numbers in each such as
@@ -54,12 +56,22 @@ string mineKey()
 /// reads the next crypto key from the keybank file
 /// </summary>
 /// <returns>returns new crypto to use or "" if the file was completely read</returns>
+
+
 string readNextCrypto()
 {
+
+
+	//this is kicking my butt, I'm making a temporary solution to make sure everything else works before continuing this in earnest
 	string crypto = "";
+	string arrayOfKeys[21] = { "324765" ,"329878","547825","457117","100235","000644","222222","483942","658393","234500","344323","654566","324664","468644","999999","564646","324679","087654","545678","435792","" };
 
-	// TODO DSA1
-
+	crypto = arrayOfKeys[counter];
+	counter++;
+	//ifstream ins("cryptoFile.txt");
+	//// TODO DSA1
+	//cryptoFile.open("cryptoFile.txt");
+	//getline(cryptoFile, crypto);
 	return crypto;
 }
 
