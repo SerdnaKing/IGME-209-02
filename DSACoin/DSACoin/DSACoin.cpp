@@ -99,9 +99,17 @@ int main()
 	int cnt = 0;
 
 	// TODO DSA1
+	
 	// write the main loop
 	// mine the keys, check to see if the crypto is in the key
 	// create a coin for the good keys and add it to your wallet
+	//for (int i = 0; i < 20; i++) {
+		readNextCrypto();
+		mineKey();
+		if (cout<<mineKey().find(readNextCrypto())) {
+			
+		}
+	//}
 	// write out the keys to the walletFile
 
 
