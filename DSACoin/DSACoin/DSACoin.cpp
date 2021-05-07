@@ -114,18 +114,15 @@ int main()
 	//if the calculated value of the found key is zero BREAK that is the 
 	//end of the test
 	double value = calculateValue();
-
+	vector<string> filedKeys;
 		 do{
 			double value = calculateValue();
 			if (key.find(crypto)) {
 				Coin* newCoin = new Coin(key, calculateValue());
 				myWallet.AddCoin(newCoin);
 				cnt++;
-				walletFile.open("walletFile.txt");
-				if (walletFile.is_open()) {
-						walletFile << key << "\n";
-					walletFile.close();
-				}
+				filedKeys.push_back(key);
+				
 
 				
 				//move onto the next crypto
@@ -150,8 +147,21 @@ int main()
 			//check to make sure that the key is not an empty string (signifying the end of the list)
 		} while (value != 0.0 || key == "");
 
-		
-	
+		//walletFile.open("walletFile.txt");
+		std::ofstream output_file("walletFile.txt");
+		std::ostream_iterator<std::string> output_iterator(output_file, "\n");
+		std::copy(filedKeys.begin(), filedKeys.end(), output_iterator);
+		//if (walletFile.is_open()) {
+		//	/*walletFile << key << "\n";*/
+		//	for (int i = 0; i < filedKeys.size(); i++) {
+		//		walletFile << filedKeys.at(i) << "\n";
+		//	}
+		//	walletFile.close();
+		//}
+		//clean out filedKeys for next loop
+		for (int i = 0; i < filedKeys.size(); i++) {
+			filedKeys.at(i).clear();
+		}
 	// write out the keys to the walletFile
 
 
