@@ -32,7 +32,7 @@ string mineKey()
 
 	string key;
 	//make a max of 9 for the random
-	int max = 9;
+	int max = 10;
 	//initialize random
 	int random;
 	//loop through 80 times to generate 80 random numbers
@@ -59,16 +59,6 @@ int counter = 0;
 vector<string> lines;
 string readNextCrypto()
 {
-
-/*
-	//this is kicking my butt, I'm making a temporary solution to make sure everything else works before continuing this in earnest
-	string crypto = "";
-	string arrayOfKeys[21] = { "324765" ,"329878","547825","457117","100235","000644","222222","483942","658393","234500","344323","654566","324664","468644","999999","564646","324679","087654","545678","435792","" };
-
-	crypto = arrayOfKeys[counter];
-	counter++;
-
-	return crypto;*/
 	string crypto = "";
 	string line;
 	//only access this if it hasn't been already, otherwise just go straight to 
@@ -131,7 +121,6 @@ int main()
 	// mine the keys, check to see if the crypto is in the key
 	// create a coin for the good keys and add it to your wallet
 
-	//while(size_t index != crypto.find(key) && calculatedValue != 0.0
 	//change the key until it matches the current crypto.
 	//once it does, change the crypto, add the current key to the wallet, 
 	//make a new key and repeat the pattern
@@ -141,7 +130,7 @@ int main()
 	vector<string> filedKeys;
 		 do{
 			double value = calculateValue();
-			if (key.find(crypto) && value != 0.0 && keysLeft <=18) {
+			if (key.find(crypto,0) != string::npos && keysLeft <=18) {
 			Coin* newCoin = new Coin(key, calculateValue());
 				myWallet.AddCoin(newCoin);
 				cnt++;
