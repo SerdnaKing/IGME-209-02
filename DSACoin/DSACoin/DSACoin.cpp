@@ -19,8 +19,6 @@ std::chrono::high_resolution_clock::time_point start_time;
 ifstream cryptoFile("cryptoFile.txt");;
 ofstream walletFile("walletFile.txt");;
 
-//count initialization for readNextCrypto
-int counter = 0;
 
 /// <summary>
 /// Generates an 80 charater long string with random numbers in each such as
@@ -56,12 +54,13 @@ string mineKey()
 /// reads the next crypto key from the keybank file
 /// </summary>
 /// <returns>returns new crypto to use or "" if the file was completely read</returns>
-
-
+//count initialization for readNextCrypto
+int counter = 0;
+vector<string> lines;
 string readNextCrypto()
 {
 
-
+/*
 	//this is kicking my butt, I'm making a temporary solution to make sure everything else works before continuing this in earnest
 	string crypto = "";
 	string arrayOfKeys[21] = { "324765" ,"329878","547825","457117","100235","000644","222222","483942","658393","234500","344323","654566","324664","468644","999999","564646","324679","087654","545678","435792","" };
@@ -69,6 +68,30 @@ string readNextCrypto()
 	crypto = arrayOfKeys[counter];
 	counter++;
 
+	return crypto;*/
+	string crypto = "";
+	string line;
+	//only access this if it hasn't been already, otherwise just go straight to 
+	//the setting of crypto to the next in line
+	if (cryptoFile.is_open() && lines.size() == 0)
+	{
+
+		while (getline(cryptoFile, line))
+		{
+			if (line.size() > 0)
+			{
+				lines.push_back(line);
+			}
+		}
+
+		cryptoFile.close();
+
+	}
+	crypto = lines.at(counter);
+	counter++;
+	//if (counter == 19) {
+	//	return 0;
+	//}
 	return crypto;
 }
 
@@ -97,11 +120,12 @@ int main()
 	srand(2021);
 	Wallet myWallet;
 	int cnt = 0;
-
+	int keysLeft = 0;
 	// TODO DSA1
 
 	//have readNextCrypto and mainKey both set for the initial loop.
 	string crypto = readNextCrypto();
+	keysLeft++;
 	string key = mineKey();
 	// write the main loop
 	// mine the keys, check to see if the crypto is in the key
@@ -117,16 +141,14 @@ int main()
 	vector<string> filedKeys;
 		 do{
 			double value = calculateValue();
-			if (key.find(crypto)) {
-				Coin* newCoin = new Coin(key, calculateValue());
+			if (key.find(crypto) && value != 0.0 && keysLeft <=18) {
+			Coin* newCoin = new Coin(key, calculateValue());
 				myWallet.AddCoin(newCoin);
 				cnt++;
 				filedKeys.push_back(key);
-				
-
-				
 				//move onto the next crypto
 				crypto = readNextCrypto();
+				keysLeft++;
 				//do I also get a new key?
 				key = mineKey();
 
