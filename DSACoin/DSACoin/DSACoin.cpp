@@ -99,15 +99,13 @@ int main()
 	int cnt = 0;
 
 	// TODO DSA1
-	//keeps the while loop from infinitely checking
-	//int counter = 0;
+
 	//have readNextCrypto and mainKey both set for the initial loop.
 	string crypto = readNextCrypto();
 	string key = mineKey();
 	// write the main loop
 	// mine the keys, check to see if the crypto is in the key
 	// create a coin for the good keys and add it to your wallet
-	//change this for loop into a while loop
 
 	//while(size_t index != crypto.find(key) && calculatedValue != 0.0
 	//change the key until it matches the current crypto.
@@ -115,8 +113,6 @@ int main()
 	//make a new key and repeat the pattern
 	//if the calculated value of the found key is zero BREAK that is the 
 	//end of the test
-	//the for loop gave working output, but 
-	//for (int i = 0; i < 20; i++) {}
 	double value = calculateValue();
 
 		 do{
@@ -124,7 +120,6 @@ int main()
 			if (key.find(crypto)) {
 				Coin* newCoin = new Coin(key, calculateValue());
 				myWallet.AddCoin(newCoin);
-				//counter++;
 				cnt++;
 				//move onto the next crypto
 				crypto = readNextCrypto();
@@ -135,7 +130,6 @@ int main()
 
 			}
 			else {
-				//what do I want it to do in this situation
 				//mine another key and repeat
 				key = mineKey();
 				cnt++;
@@ -144,7 +138,7 @@ int main()
 			if (value == 0.0) {
 				break;
 			}
-		} while (value != 0.0);
+		} while (value != 0.0 || key == "");
 
 		
 	
