@@ -22,5 +22,16 @@ double Wallet::GetValue()
 Wallet::~Wallet()
 {
 	// TODO DSA1
+	//I am unsure how to clear the wallet
+	//something to the effect of
+	//delete wallet;
+	//but it only threw errors
+	//implementing wallet.clear() as a solution for now
+	wallet.clear();
+
+	//loop through and delete each part of wallet.
+	for (int i = 0; i < wallet.size(); i++) {
+		delete wallet.at(i);
+	}
 	
 }
