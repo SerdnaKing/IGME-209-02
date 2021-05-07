@@ -156,8 +156,7 @@ int main()
 		} while (value != 0.0 || key == "");
 
 		//take the keys and write them to the wallet.
-		std::ofstream output_file("walletFile.txt");
-		std::ostream_iterator<std::string> output_iterator(output_file, "\n");
+		std::ostream_iterator<std::string> output_iterator(walletFile, "\n");
 		std::copy(filedKeys.begin(), filedKeys.end(), output_iterator);
 
 		//clean out filedKeys for next loop
