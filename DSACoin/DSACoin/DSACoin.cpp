@@ -129,9 +129,6 @@ int main()
 				crypto = readNextCrypto();
 				//do I also get a new key?
 				key = mineKey();
-				//open up the walletFile and add the key to the list
-			
-				//write out the keys to the wallet file
 
 			}
 			else {
@@ -147,17 +144,11 @@ int main()
 			//check to make sure that the key is not an empty string (signifying the end of the list)
 		} while (value != 0.0 || key == "");
 
-		//walletFile.open("walletFile.txt");
+		//take the keys and write them to the wallet.
 		std::ofstream output_file("walletFile.txt");
 		std::ostream_iterator<std::string> output_iterator(output_file, "\n");
 		std::copy(filedKeys.begin(), filedKeys.end(), output_iterator);
-		//if (walletFile.is_open()) {
-		//	/*walletFile << key << "\n";*/
-		//	for (int i = 0; i < filedKeys.size(); i++) {
-		//		walletFile << filedKeys.at(i) << "\n";
-		//	}
-		//	walletFile.close();
-		//}
+
 		//clean out filedKeys for next loop
 		for (int i = 0; i < filedKeys.size(); i++) {
 			filedKeys.at(i).clear();
