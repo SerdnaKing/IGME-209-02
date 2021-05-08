@@ -79,9 +79,6 @@ string readNextCrypto()
 	}
 	crypto = lines.at(counter);
 	counter++;
-	//if (counter == 19) {
-	//	return 0;
-	//}
 	return crypto;
 }
 
@@ -111,12 +108,25 @@ int main()
 	Wallet myWallet;
 	int cnt = 0;
 	int keysLeft = 0;
-	// TODO DSA1
+	
 
 	//have readNextCrypto and mainKey both set for the initial loop.
-	string crypto = readNextCrypto();
-	keysLeft++;
-	string key = mineKey();
+	//string crypto = readNextCrypto();
+	//keysLeft++;
+	//string key = mineKey();
+	//string key;
+	//string crypto;
+
+	//threaded version of above comments. 
+	//This consistently gives off higher wallet scores than the unthreaded version
+	string crypto;
+	string key;
+	thread c(readNextCrypto);
+	thread k(mineKey);
+
+	c.join();
+	k.join();
+	
 	// write the main loop
 	// mine the keys, check to see if the crypto is in the key
 	// create a coin for the good keys and add it to your wallet
@@ -130,7 +140,7 @@ int main()
 	vector<string> filedKeys;
 		 do{
 			double value = calculateValue();
-			if (key.find(crypto,0) != string::npos && keysLeft <=18) {
+			if (key.find(crypto,0) != string::npos && keysLeft <19) {
 			Coin* newCoin = new Coin(key, calculateValue());
 				myWallet.AddCoin(newCoin);
 				cnt++;
