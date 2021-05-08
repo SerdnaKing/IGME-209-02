@@ -113,6 +113,8 @@ int main()
 	//string key = mineKey();
 	//string key;
 	//string crypto;
+
+
 	//threaded version of above comments. 
 	//This consistently gives off higher wallet scores than the unthreaded version
 	string crypto;
@@ -123,7 +125,6 @@ int main()
 	c.join();
 	k.join();
 	
-	// write the main loop
 	// mine the keys, check to see if the crypto is in the key
 	// create a coin for the good keys and add it to your wallet
 	//change the key until it matches the current crypto.
