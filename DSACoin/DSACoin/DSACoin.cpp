@@ -65,7 +65,6 @@ string readNextCrypto()
 	//the setting of crypto to the next in line
 	if (cryptoFile.is_open() && lines.size() == 0)
 	{
-
 		while (getline(cryptoFile, line))
 		{
 			if (line.size() > 0)
@@ -73,9 +72,7 @@ string readNextCrypto()
 				lines.push_back(line);
 			}
 		}
-
 		cryptoFile.close();
-
 	}
 	crypto = lines.at(counter);
 	counter++;
@@ -116,7 +113,6 @@ int main()
 	//string key = mineKey();
 	//string key;
 	//string crypto;
-
 	//threaded version of above comments. 
 	//This consistently gives off higher wallet scores than the unthreaded version
 	string crypto;
@@ -130,20 +126,20 @@ int main()
 	// write the main loop
 	// mine the keys, check to see if the crypto is in the key
 	// create a coin for the good keys and add it to your wallet
-
 	//change the key until it matches the current crypto.
 	//once it does, change the crypto, add the current key to the wallet, 
 	//make a new key and repeat the pattern
 	//if the calculated value of the found key is zero BREAK that is the 
 	//end of the test
-	double value = calculateValue();
+	double value;
 	vector<string> filedKeys;
 		 do{
-			double value = calculateValue();
+		    value = calculateValue();
 			if (key.find(crypto,0) != string::npos && keysLeft <19) {
 			Coin* newCoin = new Coin(key, calculateValue());
 				myWallet.AddCoin(newCoin);
 				cnt++;
+				//add key to the back of the vector
 				filedKeys.push_back(key);
 				//move onto the next crypto
 				crypto = readNextCrypto();
