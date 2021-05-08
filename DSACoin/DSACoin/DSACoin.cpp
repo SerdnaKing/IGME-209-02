@@ -170,9 +170,6 @@ int main()
 		for (int i = 0; i < filedKeys.size(); i++) {
 			filedKeys.at(i).clear();
 		}
-	// write out the keys to the walletFile
-
-
 	cout << "keys searched: " << cnt << endl;
 	cout << "Wallet value: " << myWallet.GetValue() << endl;
 
